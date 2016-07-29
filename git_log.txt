@@ -1,0 +1,42 @@
+git add file1
+git add file2 file3
+git commit -m "message"
+git status
+git diff
+git log    :the result will decrease when regression
+git reflog    :keep all the foot print and 31421e41
+git checkout --file    :retreat changes in workzone
+git reset HEAD file    :bring back files from tmpzone to workzone,equals to strictly going back git add---workzone file still has the changed file
+git reset --hard 3628164  or  git reset --hard HEAD^^    :regression
+git checkout -b dev
+     ||
+{ git branch dev    :new a branch
+git checkout dev   :switch branch }
+
+git branch    :view branches
+
+git merge target_branch    :bring combine the target_branch to current branch
+
+git branch -d target_branch   :delete branch
+
+master : after git merge feature ,master change,feature change follows the same automatically;
+                                  feature change ,master change follows the same automatically;
+
+
+$ git branch -d feature1
+error: The branch 'feature1' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D feature1'.
+
+
+master 在工作区修改，没add，没提交，branch2 修改，提交，，，checkout master，文件消失
+
+一个分支修改工作区，所有分支工作区均被修改，均可见；所有分支git status：待 add；
+
+master 在工作区修改，已add，没提交，branch2 与 master均待提交，，branch2 提交后，master也自动提交，不理解；
+
+master 在工作区修改，已add，已提交，branch2对该改变不可见
+
+修改冲突后自动合并
+
+git log --graph --pretty=oneline --abbrev-commit
+
