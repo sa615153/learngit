@@ -36,7 +36,78 @@ master ÔÚ¹¤×÷ÇøĞŞ¸Ä£¬ÒÑadd£¬Ã»Ìá½»£¬branch2 Óë master¾ù´ıÌá½»£¬£¬branch2 Ìá½»ºó£
 
 master ÔÚ¹¤×÷ÇøĞŞ¸Ä£¬ÒÑadd£¬ÒÑÌá½»£¬branch2¶Ô¸Ã¸Ä±ä²»¿É¼û
 
-ĞŞ¸Ä³åÍ»ºó×Ô¶¯ºÏ²¢
+ĞŞ¸Ä³åÍ»ºó×Ô¶¯ºÏ²¢£¬²»ÓÃmerge
 
 git log --graph --pretty=oneline --abbrev-commit
+
+
+git clone git@github.com:sa615153/learngit.git  :Ö»ÄÜclone master·ÖÖ§
+
+³ı·Çgit checkout -b dev origin/dev
+
+git push -u origin master  °Ñ±¾µØ¿âpushµ½Ô¶³Ì
+
+ÍÆËÍ·ÖÖ§£ºgit push origin master   git push origin dev
+------------------------------------------------------------------------
+
+¿ªÊ¼
+git push Ê§°Ü£¬Ô­Òò¿ÉÄÜÊÇ×Ô¼ºµÄÎÄ¼şÒÑ²»ÊÇ×îĞÂ°æ£¬Ó¦ git pull
+git pull Ê§°Ü£¬Ô­ÒòÊÇÃ»ÓĞÖ¸¶¨±¾µØdev·ÖÖ§ÓëÔ¶³Ìorigin/dev·ÖÖ§µÄÁ´½Ó£¬¸ù¾İÌáÊ¾£¬ÉèÖÃdevºÍorigin/devµÄÁ´½Ó£º
+git branch --set-upstream dev origin/dev ½Ó×Ågit pull
+git pull³É¹¦£¬µ«ÊÇºÏ²¢ÓĞ³åÍ»£¬ĞèÒªÊÖ¶¯½â¾ö£¬½â¾öµÄ·½·¨ºÍ·ÖÖ§¹ÜÀíÖĞµÄ½â¾ö³åÍ»ÍêÈ«Ò»Ñù¡£½â¾öºó£¬Ìá½»£¬ÔÙpush
+½â¾ö³åÍ»Õâ¸övi£¬Ö»ÊÇÎªÁËÈÃÄãÖªµÀÒ»ÏÂ¶øÒÑ¡£Ã²ËÆ
+git push origin dev
+Íê³É
+
+Òò´Ë£¬¶àÈËĞ­×÷µÄ¹¤×÷Ä£Ê½Í¨³£ÊÇÕâÑù£º
+Ê×ÏÈ£¬¿ÉÒÔÊÔÍ¼ÓÃgit push origin branch-nameÍÆËÍ×Ô¼ºµÄĞŞ¸Ä£»
+Èç¹ûÍÆËÍÊ§°Ü£¬ÔòÒòÎªÔ¶³Ì·ÖÖ§±ÈÄãµÄ±¾µØ¸üĞÂ£¬ĞèÒªÏÈÓÃgit pullÊÔÍ¼ºÏ²¢£»
+Èç¹ûºÏ²¢ÓĞ³åÍ»£¬Ôò½â¾ö³åÍ»£¬²¢ÔÚ±¾µØÌá½»£»
+Ã»ÓĞ³åÍ»»òÕß½â¾öµô³åÍ»ºó£¬ÔÙÓÃgit push origin branch-nameÍÆËÍ¾ÍÄÜ³É¹¦£¡
+Èç¹ûgit pullÌáÊ¾¡°no tracking information¡±£¬ÔòËµÃ÷±¾µØ·ÖÖ§ºÍÔ¶³Ì·ÖÖ§µÄÁ´½Ó¹ØÏµÃ»ÓĞ´´½¨£¬ÓÃÃüÁîgit branch --set-upstream branch-name origin/branch-name¡£
+Õâ¾ÍÊÇ¶àÈËĞ­×÷µÄ¹¤×÷Ä£Ê½£¬Ò»µ©ÊìÏ¤ÁË£¬¾Í·Ç³£¼òµ¥¡£
+
+
+Ğ¡½á
+
+²é¿´Ô¶³Ì¿âĞÅÏ¢£¬Ê¹ÓÃgit remote -v£»
+
+±¾µØĞÂ½¨µÄ·ÖÖ§Èç¹û²»ÍÆËÍµ½Ô¶³Ì£¬¶ÔÆäËûÈË¾ÍÊÇ²»¿É¼ûµÄ£»
+
+´Ó±¾µØÍÆËÍ·ÖÖ§£¬Ê¹ÓÃgit push origin branch-name£¬Èç¹ûÍÆËÍÊ§°Ü£¬ÏÈÓÃgit pull×¥È¡Ô¶³ÌµÄĞÂÌá½»£»
+
+ÔÚ±¾µØ´´½¨ºÍÔ¶³Ì·ÖÖ§¶ÔÓ¦µÄ·ÖÖ§£¬Ê¹ÓÃgit checkout -b branch-name origin/branch-name£¬±¾µØºÍÔ¶³Ì·ÖÖ§µÄÃû³Æ×îºÃÒ»ÖÂ£»
+
+½¨Á¢±¾µØ·ÖÖ§ºÍÔ¶³Ì·ÖÖ§µÄ¹ØÁª£¬Ê¹ÓÃgit branch --set-upstream branch-name origin/branch-name£»
+
+´ÓÔ¶³Ì×¥È¡·ÖÖ§£¬Ê¹ÓÃgit pull£¬Èç¹ûÓĞ³åÍ»£¬ÒªÏÈ´¦Àí³åÍ»¡£
+------------------------------------------------------------------------
+git tag v1.0
+git tag v0.9 6224937
+git tag
+git show v0.9
+»¹¿ÉÒÔ´´½¨´øÓĞËµÃ÷µÄ±êÇ©£¬ÓÃ-aÖ¸¶¨±êÇ©Ãû£¬-mÖ¸¶¨ËµÃ÷ÎÄ×Ö£º
+git tag -a v0.1 -m "version 0.1 released" 3628164
+ÓÃÃüÁîgit show <tagname>¿ÉÒÔ¿´µ½ËµÃ÷ÎÄ×Ö£º
+git show v0.1
+»¹¿ÉÒÔÍ¨¹ı-sÓÃË½Ô¿Ç©ÃûÒ»¸ö±êÇ©£º
+git tag -s v0.2 -m "signed version 0.2 released" fec145a
+Ç©Ãû²ÉÓÃPGPÇ©Ãû£¬Òò´Ë£¬±ØĞëÊ×ÏÈ°²×°gpg£¨GnuPG£©
+git tag -d v0.1
+
+git push origin v1.0
+»òÕß£¬Ò»´ÎĞÔÍÆËÍÈ«²¿ÉĞÎ´ÍÆËÍµ½Ô¶³ÌµÄ±¾µØ±êÇ©£º
+git push origin --tags
+
+Èç¹û±êÇ©ÒÑ¾­ÍÆËÍµ½Ô¶³Ì£¬ÒªÉ¾³ıÔ¶³Ì±êÇ©¾ÍÂé·³Ò»µã£¬ÏÈ´Ó±¾µØÉ¾³ı£º
+git tag -d v0.9
+  Deleted tag 'v0.9' (was 6224937)
+È»ºó£¬´ÓÔ¶³ÌÉ¾³ı¡£É¾³ıÃüÁîÒ²ÊÇpush£¬µ«ÊÇ¸ñÊ½ÈçÏÂ£º
+git push origin :refs/tags/v0.9
+
+
+
+
+
+
 
