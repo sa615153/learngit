@@ -216,7 +216,17 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 
 
+git remote add origin git@github.com:michaelliao/learngit.git
+git push -u origin master
 
+
+
+ø… ”ªØ
+JPang3@BGC-JPang3 MINGW64 ~/Downloads/flashgit
+$ set path="C:\Program Files\Git\bin"
+
+JPang3@BGC-JPang3 MINGW64 ~/Downloads/flashgit
+$ ~/Downloads/flashgit/gource.exe --path ~/Desktop/outer/iTesting/
 
 
 
