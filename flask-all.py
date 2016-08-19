@@ -46,6 +46,10 @@ def show_post(post_id):
     return 'Post %d' % post_id
 
 
+
+a number of keyword arguments, each corresponding to the variable part of the URL rule. Unknown variable parts are appended to the URL as query parameters. Here are some examples:
+//url study
+
 //动态构建url
 >>> from flask import Flask, url_for
 >>> app = Flask(__name__)
@@ -82,5 +86,66 @@ def test():
 def test():
     return 'this is response'
 app.add_url_route('/test',view_func=test)
+
+
+PUT
+类似 POST 但是服务器可能触发了存储过程多次，多次覆盖掉旧值。你可 能会问这有什么用，
+当然这是有原因的。考虑到传输中连接可能会丢失，在 这种 情况下浏览器和服务器之间的系
+统可能安全地第二次接收请求，而 不破坏其它东西。因为 POST 它只触发一次，所以用 POST
+是不可能的。
+
+
+
+Case 1: a module:
+
+/application.py
+/templates
+    /hello.html
+Case 2: a package:
+
+/application
+    /__init__.py
+    /templates
+        /hello.html
+
+
+
+
+//request
+from flask import request
+The current request method is available by using the method attribute. To access form data (data transmitted in a POST or PUT request) you can use the form attribute. Here is a full example of the two attributes mentioned above:
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'],
+                       request.form['password']):
+            return log_the_user_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+    # the code below is executed if the request method
+    # was GET or the credentials were invalid
+    return render_template('login.html', error=error)
+What happens if the key does not exist in the form attribute? In that case a special KeyError is raised. You can catch it like a standard KeyError but if you don’t do that, a HTTP 400 Bad Request error page is shown instead. So for many situations you don’t have to deal with that problem.
+
+To access parameters submitted in the URL (?key=value) you can use the args attribute:
+
+searchword = request.args.get('key', '')
+
+
+
+*//redirect abort//单层资源，拦截url*
+
+from flask import abort, redirect, url_for
+
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
+@app.route('/login')
+def login():
+    abort(401)
+    this_is_never_executed()
 
 

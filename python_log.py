@@ -317,7 +317,7 @@ filter(not_empty, ['A', '', 'B', None, 'C', '  '])
 
 
 
-//sort
+//sort=
 
 >>> sorted([36, 5, 12, 9, 21])
 [5, 9, 12, 21, 36]
@@ -899,6 +899,10 @@ def student2dict(std):
 
 print(json.dumps(s, default=student2dict))
 
+
+
+metaclass允许你创建类或者修改类
+
 //or
 print(json.dumps(s, default=lambda obj: obj.__dict__))
 
@@ -1071,7 +1075,7 @@ Model从dict继承，所以具备所有dict的功能，同时又实现了特殊�
 123
 
 
- metaclass的相关知识
+// metaclass的相关知识
 1. what is metaclass?
 1.1 在wiki上面，metaclass是这样定义的：In object-oriented programming, 
 a metaclass is a class whose instances are classes. 
@@ -1089,3 +1093,148 @@ metaclass是类似创建类的模板，所有的类都是通过他来create的(�
 
 
 
+class sessionmaker(_SessionClassMethods):
+    """A configurable :class:`.Session` factory.
+
+    The :class:`.sessionmaker` factory generates new
+    :class:`.Session` objects when called, creating them given
+    the configurational arguments established here.
+
+    e.g.::
+
+        # global scope
+        Session = sessionmaker(autoflush=False)
+
+        # later, in a local scope, create and use a session:
+        sess = Session()
+
+    Any keyword arguments sent to the constructor itself will override the
+    "configured" keywords::
+
+        Session = sessionmaker()
+
+        # bind an individual session to a connection
+        sess = Session(bind=connection)
+
+    The class also includes a method :meth:`.configure`, which can
+    be used to specify additional keyword arguments to the factory, which
+    will take effect for subsequent :class:`.Session` objects generated.
+    This is usually used to associate one or more :class:`.Engine` objects
+    with an existing :class:`.sessionmaker` factory before it is first
+    used::
+
+        # application starts
+        Session = sessionmaker()
+
+        # ... later
+        engine = create_engine('sqlite:///foo.db')
+        Session.configure(bind=engine)
+
+        sess = Session()
+
+    .. seealso:
+
+        :ref:`session_getting` - introductory text on creating
+        sessions using :class:`.sessionmaker`.
+
+    """
+
+    def __init__(self, bind=None, class_=Session, autoflush=True,
+                 autocommit=False,
+                 expire_on_commit=True,
+                 info=None, **kw):
+        """Construct a new :class:`.sessionmaker`.
+
+        All arguments here except for ``class_`` correspond to arguments
+        accepted by :class:`.Session` directly.  See the
+        :meth:`.Session.__init__` docstring for more details on parameters.
+
+        :param bind: a :class:`.Engine` or other :class:`.Connectable` with
+         which newly created :class:`.Session` objects will be associated.
+        :param class_: class to use in order to create new :class:`.Session`
+         objects.  Defaults to :class:`.Session`.
+        :param autoflush: The autoflush setting to use with newly created
+         :class:`.Session` objects.
+        :param autocommit: The autocommit setting to use with newly created
+         :class:`.Session` objects.
+        :param expire_on_commit=True: the expire_on_commit setting to use
+         with newly created :class:`.Session` objects.
+        :param info: optional dictionary of information that will be available
+         via :attr:`.Session.info`.  Note this dictionary is *updated*, not
+         replaced, when the ``info`` parameter is specified to the specific
+         :class:`.Session` construction operation.
+
+         .. versionadded:: 0.9.0
+
+        :param \**kw: all other keyword arguments are passed to the
+         constructor of newly created :class:`.Session` objects.
+
+        """
+        kw['bind'] = bind
+        kw['autoflush'] = autoflush
+        kw['autocommit'] = autocommit
+        kw['expire_on_commit'] = expire_on_commit
+        if info is not None:
+            kw['info'] = info
+        self.kw = kw
+        # make our own subclass of the given class, so that
+        # events can be associated with it specifically.
+        self.class_ = type(class_.__name__, (class_,), {})    //sessionmaker的make之处
+
+    def __call__(self, **local_kw):
+        """Produce a new :class:`.Session` object using the configuration
+        established in this :class:`.sessionmaker`.
+
+        In Python, the ``__call__`` method is invoked on an object when
+        it is "called" in the same way as a function::
+
+            Session = sessionmaker()
+            session = Session()  # invokes sessionmaker.__call__()
+
+        """
+        for k, v in self.kw.items():
+            if k == 'info' and 'info' in local_kw:
+                d = v.copy()
+                d.update(local_kw['info'])
+                local_kw['info'] = d
+            else:
+                local_kw.setdefault(k, v)
+        return self.class_(**local_kw)       //Session对象执行类的__call__时，即Session(...)时，返回cl_类实例
+
+    def configure(self, **new_kw):
+        """(Re)configure the arguments for this sessionmaker.
+
+        e.g.::
+
+            Session = sessionmaker()
+
+            Session.configure(bind=create_engine('sqlite://'))
+        """
+        self.kw.update(new_kw)
+
+    def __repr__(self):
+        return "%s(class_=%r,%s)" % (
+            self.__class__.__name__,
+            self.class_.__name__,
+            ", ".join("%s=%r" % (k, v) for k, v in self.kw.items())
+        )
+
+
+Session = sessionmaker(autocommit=False,
+                       autoflush=False,
+                       bind=create_engine(DB_URI))
+session = scoped_session(Session)
+
+
+
+s1 = Session()
+
+print type(Session)
+
+print type(session)
+
+print type(s1)
+
+# <class 'sqlalchemy.orm.session.sessionmaker'>
+# <class 'sqlalchemy.orm.scoping.scoped_session'>
+# <class 'sqlalchemy.orm.session.Session'>
