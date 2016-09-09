@@ -238,3 +238,60 @@ resource - the Engine is most efficient when created just once at the module lev
 
 
 
+//定制base，或mixin
+
+from sqlalchemy.ext.declarative import declared_attr
+
+class MyMixin(object):
+
+    @declared_attr
+    def __tablename__(cls):
+        return cls.__name__.lower()
+
+    __table_args__ = {'mysql_engine': 'InnoDB'}
+    __mapper_args__= {'always_refresh': True}
+
+    id =  Column(Integer, primary_key=True)
+
+class MyModel(MyMixin, Base):
+    name = Column(String(1000))
+
+
+
+If the Base did define an attribute of the same name, the class placed first in the inherits list would determine which attribute is used on the newly defined class.
+
+from sqlalchemy.ext.declarative import declared_attr
+
+class Base(object):
+    @declared_attr
+    def __tablename__(cls):
+        return cls.__name__.lower()
+
+    __table_args__ = {'mysql_engine': 'InnoDB'}
+
+    id =  Column(Integer, primary_key=True)
+
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base(cls=Base)
+
+class MyModel(Base):
+    name = Column(String(1000))
+Where above, MyModel and all other classes that derive from Base will have a table name derived from the class name, an id primary key column, as well as the “InnoDB” engine for MySQL.
+BaseModel = declarative_base()
+class User(BaseModel):
+    __table_args__ = {
+        'mysql_engine': 'InnoDB',
+        'mysql_charset': 'utf8'
+    }
+
+
+
+>>> session.commit()
+commit() flushes whatever remaining changes remain to the database, and commits the transaction. The connection resources referenced by the session are now returned to the connection pool. Subsequent operations with this session will occur in a new transaction, which will again re-acquire connection resources when first needed.
+
+
+
+//query
+It features a generative interface whereby successive calls return a new Query object, a copy of the former with additional criteria and options associated with it.
+

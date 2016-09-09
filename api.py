@@ -442,7 +442,19 @@ Date: Mon, 20 May 2013 06:46:45 GMT
 
 
 
+//蓝图
+//blueprint
 
+api.
+init_app(app)
+Initialize this class with the given flask.Flask application or flask.Blueprint object.
+
+Parameters:	app (flask.Blueprint) – the Flask application or blueprint object
+Examples:
+
+api = Api()
+api.add_resource(...)
+api.init_app(app)
 
 
 
