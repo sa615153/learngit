@@ -1818,3 +1818,143 @@ person = {firstName:"John", lastName:"Doe", age:46,}
 
 
 
+Undefined is Not Null
+With JavaScript, null is for objects, undefined is for variables, properties, and methods.
+
+To be null, an object has to be defined, otherwise it will be undefined.
+
+If you want to test if an object exists, this will throw an error if the object is undefined:
+
+Incorrect:
+if (myObj !== null && typeof myObj !== "undefined") 
+Because of this, you must test typeof() first:
+
+Correct:
+if (typeof myObj !== "undefined" && myObj !== null) 
+
+
+
+Expecting Block Level Scope
+JavaScript does not create a new scope for each code block.
+
+It is true in many programming languages, but not true in JavaScript.
+
+It is a common mistake, among new JavaScript developers, to believe that this code returns undefined:
+
+Example
+for (var i = 0; i < 10; i++) {
+    // some code
+}
+return i;//10
+
+
+
+/////////////////////JavaScript Performance
+Reduce Activity in Loops
+Bad Code:
+var i;
+for (i = 0; i < arr.length; i++) {
+Better Code:
+var i;
+var l = arr.length;
+for (i = 0; i < l; i++) {
+
+
+
+Reduce DOM Access
+Accessing the HTML DOM is very slow, compared to other JavaScript statements.
+
+If you expect to access a DOM element several times, access it once, and use it as a local variable:
+
+Example
+var obj;
+obj = document.getElementById("demo");
+obj.innerHTML = "Hello";
+
+
+
+Reduce DOM Size
+Keep the number of elements in the HTML DOM small.
+
+This will always improve page loading, and speed up rendering (page display), especially on smaller devices.
+
+Every attempt to search the DOM (like getElementsByTagName) will benefit from a smaller DOM.
+
+
+
+Avoid Unnecessary Variables
+Don't create new variables if you don't plan to save values.
+
+Often you can replace code like this:
+
+var fullName = firstName + " " + lastName;
+document.getElementById("demo").innerHTML = fullName;
+With this:
+
+document.getElementById("demo").innerHTML = firstName + " " + lastName
+
+
+
+Delay JavaScript Loading
+Putting your scripts at the bottom of the page body, lets the browser load the page first.
+An alternative is to use defer="true" in the script tag. 
+The defer attribute specifies that the script should be executed after the page has finished parsing, 
+but it only works for external scripts.
+
+
+
+If possible, you can add your script to the page by code, after the page has loaded:
+
+Example
+<script>
+window.onload = downScripts;
+
+function downScripts() {
+    var element = document.createElement("script");
+    element.src = "myScript.js";
+    document.body.appendChild(element);
+}
+</script>/
+
+
+
+////////////////JavaScript Reserved Words
+http://www.w3schools.com/js/js_reserved.asp
+
+
+
+JSON names require double quotes. JavaScript names do not.
+
+
+
+Converting a JSON Text to a JavaScript Object
+
+
+
+First, create a JavaScript string containing JSON syntax:
+
+var text = '{ "employees" : [' + \
+'{ "firstName":"John" , "lastName":"Doe" },' + \
+'{ "firstName":"Anna" , "lastName":"Smith" },' + \
+'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+Then, use the JavaScript built-in function JSON.parse() to convert the string into a JavaScript object:
+
+var obj = JSON.parse(text);
+Finally, use the new JavaScript object in your page:
+
+Example
+<p id="demo"></p>     /
+
+<script>
+document.getElementById("demo").innerHTML =
+obj.employees[1].firstName + " " + obj.employees[1].lastName;
+</script>         /
+
+
+
+-----------------------
+|JavaScript Forms     |
+-----------------------
+
+
+JavaScript Form Validation
