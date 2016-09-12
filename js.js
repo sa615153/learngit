@@ -1958,3 +1958,67 @@ obj.employees[1].firstName + " " + obj.employees[1].lastName;
 
 
 JavaScript Form Validation
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    if (x == null || x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+
+<form name="myForm" action="demo_form.asp"
+onsubmit="return validateForm()" method="post">
+Name: <input type="text" name="fname">
+<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>                /
+
+
+
+
+<input id="numb">
+x = document.getElementById("numb").value;
+
+Automatic HTML Form Validation
+HTML form validation can be performed automatically by the browser:
+
+If a form field (fname) is empty, the required attribute prevents this form from being submitted:
+
+HTML Form Example
+<form action="demo_form.asp" method="post">
+  <input type="text" name="fname" required>
+  <input type="submit" value="Submit">
+</form>                                               /
+Automatic HTML form validation does not work in Internet Explorer 9 or earlier.
+
+
+Constraint Validation HTML Input Attributes
+Attribute	Description
+disabled	Specifies that the input element should be disabled
+max	Specifies the maximum value of an input element
+min	Specifies the minimum value of an input element
+pattern	Specifies the value pattern of an input element
+required	Specifies that the input field requires an element
+type 	Specifies the type of an input element
+http://www.w3schools.com/html/html_form_attributes.asp
+Constraint Validation CSS Pseudo Selectors
+Selector	Description
+:disabled	Selects input elements with the "disabled" attribute specified
+:invalid	Selects input elements with invalid values
+:optional	Selects input elements with no "required" attribute specified
+:required	Selects input elements with the "required" attribute specified
+:valid	Selects input elements with valid values
+http://www.w3schools.com/css/css_pseudo_classes.asp
+
+
+
