@@ -2022,3 +2022,454 @@ http://www.w3schools.com/css/css_pseudo_classes.asp
 
 
 
+
+The checkValidity() Method
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Enter a number and click OK:</p>                                       /
+
+<input id="id1" type="number" min="100" max="300" required>
+<button onclick="myFunction()">OK</button>                                /
+
+<p>If the number is less than 100 or greater than 300, an error message will be displayed.</p>       
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var inpObj = document.getElementById("id1");
+    if (inpObj.checkValidity() == false) {
+        document.getElementById("demo").innerHTML = inpObj.validationMessage;
+    } else {
+        document.getElementById("demo").innerHTML = "Input OK";
+    }
+}
+</script>
+
+</body>
+</html>                                                                   /
+
+
+
+The rangeOverflow Property
+<input id="id1" type="number" max="100">
+<button onclick="myFunction()">OK</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var txt = "";
+    if (document.getElementById("id1").validity.rangeOverflow) {
+       txt = "Value too large";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>                                                                 /
+
+
+
+
+The rangeUnderflow Property
+<input id="id1" type="number" min="100">
+<button onclick="myFunction()">OK</button>                                /
+
+<p id="demo"></p>                                                         /
+
+<script>
+function myFunction() {
+    var txt = "";
+    if (document.getElementById("id1").validity.rangeUnderflow) {
+       txt = "Value too small";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>                                                                 /
+
+
+
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue"
+};
+
+var person = new Object();
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";
+
+Using an Object Constructor
+The examples above are limited in many situations. They only create a single object.
+Sometimes we like to have an "object type" that can be used to create many objects of one type.
+The standard way to create an "object type" is to use an object constructor function:
+
+Example
+function person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+}
+var myFather = new person("John", "Doe", 50, "blue");
+var myMother = new person("Sally", "Rally", 48, "green");
+
+
+var x1 = {};            // new object
+var x2 = "";            // new primitive string
+var x3 = 0;             // new primitive number
+var x4 = false;         // new primitive boolean
+var x5 = [];            // new array	object
+var	x6 = /()/           // new regexp object
+var x7 = function(){};  // new function object
+
+
+
+Note: JavaScript variables are not mutable. Only JavaScript objects.
+
+
+
+The syntax for accessing the property of an object is:
+
+objectName.property          // person.age
+or
+
+objectName["property"]       // person["age"]
+or
+
+objectName[expression]       // x = "age"; person[x]
+
+
+
+JavaScript for...in Loop
+The JavaScript for...in statement loops through the properties of an object.
+
+Syntax
+for (variable in object) {
+    code to be executed
+}
+
+Example
+var person = {fname:"John", lname:"Doe", age:25}; 
+
+for (x in person) {
+    txt += person[x];
+}
+
+
+
+Adding New Properties
+You can add new properties to an existing object by simply giving it a value.
+
+Assume that the person object already exists - you can then give it new properties:
+
+Example
+person.nationality = "English";
+
+
+
+Deleting Properties
+The delete keyword deletes a property from an object:
+
+Example
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+delete person.age;   // or delete person["age"]; 
+
+
+
+Adding New Methods
+Defining methods to an object is done inside the constructor function:
+
+Example
+function person(firstName, lastName, age, eyeColor) {
+    this.firstName = firstName;  
+    this.lastName = lastName;
+    this.age = age;
+    this.eyeColor = eyeColor;
+    this.changeName = function (name) {
+        this.lastName = name;
+    };
+}
+
+
+
+Creating a Prototype
+The standard way to create an object prototype is to use an object constructor function:
+
+Example
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+}
+With a constructor 'function', you can use the new keyword to create new objects from the same prototype:
+
+Example
+var myFather = new Person("John", "Doe", 50, "blue");
+var myMother = new Person("Sally", "Rally", 48, "green");
+Try it Yourself »
+The constructor 'function' is the prototype for Person objects.
+It is considered good practice to name constructor 'function' with an upper-case first letter.
+
+
+
+Adding a Property to an Object
+Adding a new property to an existing object is easy:
+
+Example
+myFather.nationality = "English";
+
+
+
+Adding a Method to an Object
+Adding a new method to an existing object is also easy:
+
+Example
+myFather.name = function () {
+    return this.firstName + " " + this.lastName;
+};
+
+
+
+Adding Properties to a Prototype
+To add a new property to a constructor, you must add it to the constructor function:
+Example
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+    this.nationality = "English"//Prototype properties can have prototype values (default values).
+}
+
+
+
+Adding Methods to a Prototype
+Your constructor function can also define methods:
+
+Example
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+    this.name = function() {return this.firstName + " " + this.lastName;};
+}
+
+
+
+Using the prototype Property
+The JavaScript prototype property allows you to add new properties to an existing prototype:
+
+Example
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+}
+Person.prototype.nationality = "English";
+//var myFather = new Person("John", "Doe", 50, "blue");
+
+
+The JavaScript prototype property also allows you to add new methods to an existing prototype:
+
+Example
+function Person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eyecolor;
+}
+Person.prototype.name = function() {
+    return this.firstName + " " + this.lastName;
+};
+//var myFather = new Person("John", "Doe", 50, "blue");
+
+
+
+function functionName(parameters) {
+  code to be executed
+}
+
+Semicolons are used to separate executable JavaScript statements.
+Since a 'function' declaration is not an executable statement, it is not common to end it with a semicolon.
+
+A 'function' expression can be stored in a variable:
+Example
+var x = function (a, b) {return a * b};//name前置，
+//The function above ends with a semicolon because it is a part of an executable statement.
+
+Functions can also be defined with a built-in JavaScript 'function' constructor called Function().
+Example
+var myFunction = new Function("a", "b", "return a * b");//var myFunction = function (a, b) {return a * b};
+var x = myFunction(4, 3);
+
+myFunction(5);
+
+function myFunction(y) {
+    return y * y;
+}
+Functions defined using an expression are not hoisted.
+---------------
+Self-Invoking Functions
+Function expressions can be made "self-invoking".//没名字
+
+A self-invoking expression is invoked (started) automatically, without being called.
+
+Function expressions will execute automatically if the expression is followed by ().
+
+You cannot self-invoke a 'function' declaration.//有名字
+
+You have to add parentheses around the 'function' to indicate that it is a 'function' expression:
+(function () {
+    var x = "Hello!!";      // I will invoke myself
+})();
+---------------
+
+
+
+The arguments.length property returns the number of arguments received when the function was invoked:
+Example
+function myFunction(a, b) {
+    return arguments.length;
+}
+
+
+
+The toString() method returns the function as a string:
+Example
+function myFunction(a, b) {
+    return a * b;
+}
+var txt = myFunction.toString();
+
+
+
+A 'function' defined as the property of an object, is called a method to the object.
+A 'function' designed to create new objects, is called an object constructor.
+
+
+
+A JavaScript 'function' does not perform any checking on parameter values (arguments).Parameter Rules
+JavaScript 'function' definitions do not specify data types for parameters.
+JavaScript functions do not perform type checking on the passed arguments.
+JavaScript functions do not check the number of arguments received.
+
+
+
+Parameter Defaults
+If a function is called with missing arguments (less than declared), the missing values are set to: undefined
+Sometimes this is acceptable, but sometimes it is better to assign a default value to the parameter:
+Example
+function myFunction(x, y) {
+    if (y === undefined) {
+          y = 0;
+    } 
+}
+
+
+
+If a 'function' is called with too many arguments (more than declared), these arguments can be reached using the arguments object.
+The Arguments Object
+JavaScript functions have a built-in object called the arguments object.
+
+The argument object contains an array of the arguments used when the 'function' was called (invoked).
+
+This way you can simply use a 'function' to find (for instance) the highest value in a list of numbers:
+Example
+x = findMax(1, 123, 500, 115, 44, 88);
+function findMax() {
+    var i;
+    var max = -Infinity;
+    for (i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i];
+        }
+    }
+    return max;
+}
+
+Example
+x = sumAll(1, 123, 500, 115, 44, 88);
+function sumAll() {
+    var i, sum = 0;
+    for (i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
+
+
+
+Arguments are Passed by Value//Changes to arguments are not visible (reflected) outside the function.
+Objects are Passed by Reference
+In JavaScript, object references are values.
+//Changes to object properties are visible (reflected) outside the function.
+
+
+
+Invoking a Function as a Function
+Example
+function myFunction(a, b) {
+    return a * b;
+}
+myFunction(10, 2);           // myFunction(10, 2) will return 20
+
+The 'function' above does not belong to any object. But in JavaScript there is always a default global object.
+In HTML the default global object is the HTML page itself, so the 'function' above "belongs" to the HTML page.
+In a browser the page object is the browser window. The 'function' above automatically becomes a window 'function'.
+myFunction() and window.myFunction() is the same 'function':
+
+function myFunction(a, b) {
+    return a * b;
+}
+window.myFunction(10, 2);    // window.myFunction(10, 2) will also return 20
+
+This is a common way to invoke a JavaScript 'function', but not a very good practice.
+Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
+
+
+
+The Global Object
+When a 'function' is called without an owner object, the value of this becomes the global object.
+
+In a web browser the global object is the browser window.
+
+This example returns the window object as the value of this:
+
+Example
+function myFunction() {
+    return this;
+}
+myFunction();                // Will return the window object, [object Window]
+
+Invoking a 'function' as a global 'function', causes the value of this to be the global object.
+Using the window object as a variable can easily crash your program.
+
+
+
+Invoking a Function as a Method
+In JavaScript you can define 'function' as object methods.
+
+The following example creates an object (myObject), with two properties (firstName and lastName), and a method (fullName):
+
+Example
+var myObject = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+        return this.firstName + " " + this.lastName;
+    }
+}
+myObject.fullName();         // Will return "John Doe"
+
+
+
