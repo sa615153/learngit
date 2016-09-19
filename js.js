@@ -2416,6 +2416,7 @@ In JavaScript, object references are values.
 
 
 
+//JavaScript Function Invocation
 Invoking a Function as a Function
 Example
 function myFunction(a, b) {
@@ -2473,3 +2474,183 @@ myObject.fullName();         // Will return "John Doe"
 
 
 
+var myObject = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+        return this;
+    }
+}//this 指当前对象，函数所属对象The thing called this, is the object that "owns" the JavaScript code. 
+
+
+
+
+Invoking a Function with a Function Constructor
+If a 'function' invocation is preceded with the new keyword, it is a constructor invocation.
+
+It looks like you create a new function, but since JavaScript functions are objects you actually create a new object:
+
+Example
+// This is a function constructor:
+function myFunction(arg1, arg2) {
+    this.firstName = arg1;
+    this.lastName  = arg2;
+}
+
+// This	creates a new object
+var x = new myFunction("John","Doe");
+x.firstName;                             // Will return "John"
+Try it Yourself »
+A constructor invocation creates a new object. The new object inherits the properties and methods from its constructor.
+
+The this keyword in the constructor does not have a value.
+The value of this will be the new object created when the function is invoked.
+
+
+
+
+
+
+
+
+Invoking a Function with a Function Method
+In JavaScript, functions are objects. JavaScript functions have properties and methods.
+
+call() and apply() are predefined JavaScript 'function' methods. Both methods can be used to invoke a 'function', and both methods must have the owner object as first parameter.
+
+Example
+function myFunction(a, b) {
+    return a * b;
+}
+myObject = myFunction.call(myObject, 10, 2);     // Will return 20
+Try it Yourself »
+
+Example
+function myFunction(a, b) {
+    return a * b;
+}
+myArray = [10, 2];
+myObject = myFunction.apply(myObject, myArray);  // Will also return 20
+Try it Yourself »
+Both methods take an owner object as the first argument. The only difference is that call() takes the 'function' arguments separately, and apply() takes the 'function' arguments in an array.
+
+In JavaScript strict mode, 'the first argument becomes the value of this in the invoked \'function\'', even if the argument is not an object.
+
+In "non-strict" mode, if the value of the first argument is null or undefined, it is replaced with the global object.
+
+With call() or apply() you can set the value of this, and invoke a 'function' as a new method of an existing object.
+
+
+
+
+
+//closure
+global variables belong to the window object.
+Variables created without the keyword var, are always global, even if they are created inside a 'function'.
+
+All functions have access to the global scope.  
+In fact, in JavaScript, all functions have access to the scope "above" them.
+JavaScript supports nested functions. Nested functions have access to the scope "above" them.
+
+
+
+JavaScript Closures
+Remember self-invoking functions? What does this 'function' do?
+
+Example
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+
+add();
+add();
+add();
+
+// the counter is now 3
+
+Example Explained
+The variable add is assigned the return value of a self-invoking 'function'.
+
+The self-invoking 'function' only runs once. It sets the counter to zero (0), and returns a 'function' expression.
+
+This way add becomes a 'function'. The "wonderful" part is that it can access the counter in the parent scope.
+
+This is called a JavaScript closure. It makes it possible for a 'function' to have "private" variables.
+
+The counter is protected by the scope of the anonymous 'function', and can only be changed using the add 'function'.
+
+A closure is a 'function' having access to the parent scope, even after the parent 'function' has closed.
+
+
+
+
+-----------------------
+html DOM
+-----------------------
+
+var myElement = document.getElementById("intro");
+
+If the element is found, the method will return the element as an object (in myElement).
+If the element is not found, myElement will contain null.
+
+
+var x = document.getElementsByTagName("p");
+x[0].innerHTML
+
+/*
+<p>Hello World!</p>
+<p class="intro">The DOM is very useful.</p>
+<p class="intro">This example demonstrates the <b>getElementsByClassName</b> method.</p>
+<p id="demo"></p>
+<script>
+var x = document.getElementsByClassName("intro");
+document.getElementById("demo").innerHTML =
+'The first paragraph (index 0) with class="intro": ' + x[0].innerHTML;
+*/
+
+Finding HTML elements by id
+Finding HTML elements by tag name
+Finding HTML elements by 'class' name
+Finding HTML elements by CSS selectors
+Finding HTML elements by HTML object collections
+
+
+<form id="frm1" action="form_action.asp">
+  First name: <input type="text" name="fname" value="Donald"><br>
+  Last name: <input type="text" name="lname" value="Duck"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click "Try it" to display the value of each element in the form.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.forms["frm1"];
+    var text = "";
+    var i;
+    for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value + "<br>";
+    }
+    document.getElementById("demo").innerHTML =text;
+}
+</script>
+
+
+
+
+//write()
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+document.write(Date());
+</script>
+
+</body>
+</html>
