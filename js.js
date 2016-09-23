@@ -2516,7 +2516,8 @@ The value of this will be the new object created when the function is invoked.
 Invoking a Function with a Function Method
 In JavaScript, functions are objects. JavaScript functions have properties and methods.
 
-call() and apply() are predefined JavaScript 'function' methods. Both methods can be used to invoke a 'function', and both methods must have the owner object as first parameter.
+call() and apply() are predefined JavaScript 'function' methods. Both methods can be used to invoke a 'function', 
+and both methods must have the owner object as first parameter.
 
 Example
 function myFunction(a, b) {
@@ -2532,7 +2533,8 @@ function myFunction(a, b) {
 myArray = [10, 2];
 myObject = myFunction.apply(myObject, myArray);  // Will also return 20
 Try it Yourself »
-Both methods take an owner object as the first argument. The only difference is that call() takes the 'function' arguments separately, and apply() takes the 'function' arguments in an array.
+Both methods take an owner object as the first argument. 
+The only difference is that call() takes the 'function' arguments separately, and apply() takes the 'function' arguments in an array.
 
 In JavaScript strict mode, 'the first argument becomes the value of this in the invoked \'function\'', even if the argument is not an object.
 
@@ -2653,4 +2655,2125 @@ document.write(Date());
 </script>
 
 </body>
+</html>//Never use document.write() after the document is loaded. It will overwrite the document.
+//<button onclick="document.write(123)">write</button>
+
+
+
+Changing the Value of an Attribute
+To change the value of an HTML attribute, use this syntax:
+
+document.getElementById(id).attribute=new value
+
+
+
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<img id="myImage" src="smiley.gif">
+
+<script>
+document.getElementById("myImage").src = "landscape.jpg";
+</script>
+
+</body>
 </html>
+*/
+
+
+
+
+
+Changing HTML Style
+To change the style of an HTML element, use this syntax:
+
+document.getElementById(id).style.property=new style
+
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="p1">Hello World!</p>
+<p id="p2">Hello World!</p>
+
+<script>
+document.getElementById("p2").style.color = "blue";
+document.getElementById("p2").style.fontFamily = "Arial";
+document.getElementById("p2").style.fontSize = "larger";
+</script>
+
+<p>The paragraph above was changed by a script.</p>
+
+</body>
+</html>
+
+*/
+
+
+
+
+visibility
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="p1">
+This is a text.
+This is a text.
+This is a text.
+This is a text.
+</p>
+
+<input type="button" value="Hide text" onclick="document.getElementById('p1').style.visibility='hidden'">
+<input type="button" value="Show text" onclick="document.getElementById('p1').style.visibility='visible'">
+
+</body>
+</html>             /
+
+
+
+
+
+
+ element.style.textAlign = "left|right|center|justify"
+ element.style.backgroundColor = "color"
+ document.getElementById("demo").style.fontSize="40px"
+
+
+
+ Create an Animation Container
+All animations should be relative to a container element.
+
+<!Doctype html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background: red;
+}
+</style>
+<body>
+
+<h1>My First JavaScript Animation</h1>
+
+<div id="container">
+<div id="animate"></div>
+</div>
+
+</body>
+</html>
+
+
+
+Animation Code
+JavaScript animations are done by programming gradual changes in an element's' style.
+
+The changes are called by a timer. When the timer interval is small, the animation looks continuous.
+
+/*
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+</style>
+<body>
+
+<p>
+<button onclick="myMove()">Click Me</button>
+</p>
+
+<div id ="container">
+<div id ="animate"></div>
+</div>
+
+<script>
+function myMove() {
+  var elem = document.getElementById("animate");
+  var pos = 0;
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++;
+      elem.style.top = pos + 'px';
+      elem.style.left = pos + 'px';
+    }
+  }
+}
+</script>
+
+</body>
+</html>
+*/
+
+
+
+
+
+When a user clicks the mouse
+When a web page has loaded
+When an image has been loaded
+When the mouse moves over an element
+When an input field is changed
+'When an HTML form is submitted'
+When a user strokes a key
+
+
+
+
+<h1 onclick="this.innerHTML='Ooops!'">Click on this text!</h1>
+
+//传参
+<h1 onclick="changeText(this)">Click on this text!</h1>
+
+<script>
+function changeText(id) { 
+    id.innerHTML = "Ooops!";
+}
+</script>                               /
+
+
+
+
+
+
+//1
+To assign events to HTML elements you can use event attributes.
+
+Example
+Assign an onclick event to a button element:
+
+<button onclick="displayDate()">Try it</button>                          /
+
+
+//2
+Assign Events Using the HTML DOM
+The HTML DOM allows you to assign events to HTML elements using JavaScript:
+
+Example
+Assign an onclick event to a button element:
+
+<script>
+document.getElementById("myBtn").onclick = displayDate;
+</script>                                                                  /
+
+
+
+
+The onload and onunload Events
+<body onload="checkCookies()">
+/*
+<!DOCTYPE html>
+<html>
+<body onload="checkCookies()">
+
+<p id="demo"></p>
+
+<script>
+function checkCookies() {
+    var text = "";
+    if (navigator.cookieEnabled == true) {
+        text = "Cookies are enabled.";
+    } else {
+        text = "Cookies are not enabled.";
+    }
+    document.getElementById("demo").innerHTML = text;
+}
+</script>
+
+</body>
+</html>
+*/
+onmouseover and onmouseout
+/*
+<h1 onmouseover="style.color='red'"
+onmouseout="style.color='black'">
+*/
+
+
+
+onchange
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function myFunction() {
+    var x = document.getElementById("fname");
+    x.value = x.value.toUpperCase();
+}
+</script>
+</head>
+<body>
+
+Enter your name: <input type="text" id="fname" onchange="myFunction()">
+<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>
+
+</body>
+</html>
+*/
+
+
+
+/*
+<div class="w3-padding w3-xxlarge w3-red" onmouseover="this.innerHTML='Thank You'"
+ onmouseout="this.innerHTML='Mouse Over Me'">Mouse Over Me</div>
+/*
+
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<div onmouseover="mOver(this)" onmouseout="mOut(this)"
+style="background-color:#D94A38;width:120px;height:20px;padding:40px;">
+Mouse Over Me</div>
+
+<script>
+function mOver(obj) {
+    obj.innerHTML = "Thank You"
+}
+
+function mOut(obj) {
+    obj.innerHTML = "Mouse Over Me"
+}
+</script>
+
+</body>
+</html>
+*/
+
+
+
+The onmousedown, onmouseup and onclick Events
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<div onmousedown="mDown(this)" onmouseup="mUp(this)"
+style="background-color:#D94A38;width:90px;height:20px;padding:40px;">
+Click Me</div>
+
+<script>
+function mDown(obj) {
+    obj.style.backgroundColor = "#1ec5e5";
+    obj.innerHTML = "Release Me";
+}
+
+function mUp(obj) {
+    obj.style.backgroundColor="#D94A38";
+    obj.innerHTML="Thank You";
+}
+</script>
+
+</body>
+</html>
+*/
+
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function lighton() {
+    document.getElementById('myimage').src = "bulbon.gif";
+}
+function lightoff() {
+    document.getElementById('myimage').src = "bulboff.gif";
+}
+</script>
+</head>
+
+<body>
+
+<img id="myimage" onmousedown="lighton()" onmouseup="lightoff()" src="bulboff.gif" width="100" height="180" />
+
+<p>Click mouse and hold down!</p>
+
+</body>
+</html>
+*/
+
+
+
+
+
+onfocus
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function myFunction(x) {
+    x.style.background = "yellow";
+}
+</script>
+</head>
+<body>
+
+Enter your name: <input type="text" onfocus="myFunction(this)">
+
+<p>When the input field gets focus, a function is triggered which changes the background-color.</p>
+
+</body>
+</html>
+*/
+
+
+
+
+http://www.w3schools.com/jsref/dom_obj_event.asp
+
+
+
+
+addEventListener
+/*
+<button id="myBtn">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("myBtn").addEventListener("click", displayDate);
+
+function displayDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+</script>
+*/
+
+
+
+The addEventListener() method attaches an event handler to the specified element.
+
+The addEventListener() method attaches an event handler to an element without overwriting existing event handlers.
+
+You can add many event handlers to one element.
+
+You can add many event handlers of the same type to one element, i.e two "click" events.
+
+You can add event listeners to any DOM object not only HTML elements. i.e the window object.
+
+The addEventListener() method makes it easier to control how the event reacts to bubbling.
+
+When using the addEventListener() method, the JavaScript is separated from the HTML markup, 
+for better readability and allows you to add event listeners even when you do not control the HTML markup.
+
+You can easily remove an event listener by using the removeEventListener() method.
+
+----------------
+The first parameter is the type of the event (like "click" or "mousedown").
+
+The second parameter is the 'function' we want to call when the event occurs.
+//只能是函数名（或定义），不能是函数调用，若想实现调用，需包装调用为另一函数定义
+
+The third parameter is a boolean value specifying whether to use event bubbling or event capturing. This parameter is optional.
+----------------
+
+
+element.addEventListener(event, function, useCapture);//Note that you don't use the "on" prefix for the event; use "click" instead of "onclick".
+
+
+
+
+//可以临时定义函数
+element.addEventListener("click", function(){ alert("Hello World!"); });
+
+
+
+//调用外部函数
+element.addEventListener("click", myFunction);
+
+function myFunction() {
+    alert ("Hello World!");
+}
+
+
+
+//一个事件多个处理函数
+Add Many Event Handlers to the Same Element
+The addEventListener() method allows you to add many events to the same element, without overwriting existing events:
+
+Example
+element.addEventListener("click", myFunction);
+element.addEventListener("click", mySecondFunction);
+
+
+
+
+window.addEventListener("resize", function(){
+    document.getElementById("demo").innerHTML = sometext;
+});
+
+
+
+//实现调用
+Passing Parameters
+element.addEventListener("click", function(){ myFunction(p1, p2); });
+
+
+
+//cross broser
+Cross-browser solution:
+
+var x = document.getElementById("myBtn");
+if (x.addEventListener) {                    // For all major browsers, except IE 8 and earlier
+    x.addEventListener("click", myFunction);
+} else if (x.attachEvent) {                  // For IE 8 and earlier versions
+    x.attachEvent("onclick", myFunction);
+}
+
+
+
+event
+http://www.w3schools.com/jsref/dom_obj_event.asp
+
+
+
+
+//dom tree
+<html>
+<body>
+
+<h1 id="intro">My First Page</h1>
+
+<p id="demo">Hello!</p>
+
+<script>
+var myText = document.getElementById("intro").childNodes[0].nodeValue;
+document.getElementById("demo").innerHTML = myText;
+</script>
+
+</body>
+</html>											/
+
+Using the firstChild property is the same as using childNodes[0]:
+
+
+
+
+There are two special properties that allow access to the full document:
+
+document.body - The body of the document
+document.documentElement - The full document
+
+
+
+
+create element
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+var para = document.createElement("p");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
+var element = document.getElementById("div1");
+element.appendChild(para);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+Creating new HTML Elements - insertBefore()
+The appendChild() method in the previous example, appended the new element as the last child of the parent.
+
+If you don't want that you can use the insertBefore() method:
+
+Example
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+var para = document.createElement("p");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
+
+var element = document.getElementById("div1");
+var child = document.getElementById("p1");
+element.insertBefore(para,child);
+</script>
+*/
+
+
+
+
+
+Removing Existing HTML Elements
+
+To remove an HTML element, you must know the parent of the element:
+
+Example
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+var parent = document.getElementById("div1");
+var child = document.getElementById("p1");
+parent.removeChild(child);
+</script>
+
+</body>
+</html>
+
+Here is a common workaround: Find the child you want to remove, and use its parentNode property to find the parent:
+
+var child = document.getElementById("p1");
+child.parentNode.removeChild(child);
+
+
+The method node.remove() is implemented in the DOM 4 specification.
+But because of poor browser support, you should not use it.
+*/
+
+
+
+
+
+Replacing HTML Elements 
+To replace an element to the HTML DOM, use the replaceChild() method:
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+var parent = document.getElementById("div1");
+var child = document.getElementById("p1");
+var para = document.createElement("p");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);*/
+
+parent.replaceChild(para,child);
+/*
+</script>
+
+</body>
+</html>
+*/
+
+
+
+HTML DOM Node List
+var x = document.getElementsByTagName("p");//Note: The index starts at 0.
+y = x[1];
+var z = x.length
+
+loop use length
+
+Change the background color of all <p> elements in a node list:
+
+var	myNodelist = document.getElementsByTagName("p");
+var i;
+for (i = 0; i <	myNodelist.length; i++) {
+   	myNodelist[i].style.backgroundColor = "red";
+}
+
+
+
+//A node list is not an array!
+//A node list may look like an array, but it is not. 
+//You can loop through the node list and refer to its nodes like an array.
+// However, you cannot use Array Methods, like valueOf() or join() on the node list.
+
+
+
+JavaScript Window - The Browser Object Model
+
+The Window Object
+window.document.getElementById("header");
+||
+document.getElementById("header");
+
+
+
+//cross broswer
+Window Size
+A practical JavaScript solution (covering all browsers):
+
+Example
+var w = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+var h = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+
+
+
+
+
+window.open() - open a new window
+window.close() - close the current window
+window.moveTo() -move the current window
+window.resizeTo() -resize the current window
+
+
+
+JavaScript Window Screen
+The window.screen object can be written without the window prefix.
+The window.screen object contains information about the user's' screen.
+
+
+
+screen.width
+
+
+
+The screen.availWidth property returns the width of the visitor's' screen, 
+in pixels, minus interface features like the Windows Taskbar.
+screen.availWidth
+screen.availHeight
+
+
+
+
+screen.colorDepth
+
+
+
+screen.pixelDepth
+
+
+
+window.location
+
+window.location.href returns the href (URL) of the current page
+window.location.hostname returns the domain name of the web host
+window.location.pathname returns the path and filename of the current page
+window.location.protocol returns the web protocol used (http:// or https://)
+window.location.assign loads a new document
+
+
+
+
+<script>
+document.getElementById("demo").innerHTML =
+"Page location is: " + window.location.href;
+</script>											/
+
+
+
+<script>
+function newDoc() {
+    window.location.assign("http://www.w3schools.com")
+}
+</script>											/
+
+
+
+
+
+Window History
+The window.history object can be written without the window prefix.
+history.back() - same as clicking back in the browser
+history.forward() - same as clicking forward in the browser
+/*
+<script>
+function goBack() {
+    window.history.back()
+}
+</script>
+</head>
+<body>
+
+<input type="button" value="Back" onclick="goBack()">
+------------------------
+<head>
+<script>
+function goForward() {
+    window.history.forward()
+}
+</script>
+</head>
+<body>
+
+<input type="button" value="Forward" onclick="goForward()">
+
+</body>
+*/
+
+
+
+Window Navigator
+The window.navigator object can be written without the window prefix.
+
+Some examples:
+
+navigator.appName
+navigator.appCodeName
+navigator.platform
+
+
+
+Navigator Cookie Enabled
+The property cookieEnabled returns true if cookies are enabled, otherwise false:
+
+Example
+<p id="demo"></p>									/
+
+<script>
+document.getElementById("demo").innerHTML =
+"Cookies Enabled is " + navigator.cookieEnabled;
+</script>											/
+
+
+
+
+The Browser Names
+The properties appName and appCodeName return the name of the browser:
+
+
+
+The property product returns the engine name of the browser:
+
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = navigator.product;
+</script>
+
+
+
+The Browser Version I
+The property appVersion returns version information about the browser:
+
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = navigator.appVersion;
+</script>
+
+
+
+
+The Browser Version II
+The property userAgent also returns version information about the browser:
+
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = navigator.userAgent;
+</script>
+
+
+
+
+The Browser Platform
+The property platform returns the browser platform (operating system):
+
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = navigator.platform;
+</script>
+
+
+
+
+The Browser Language
+The property language returns the browser's' language:
+
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = navigator.language;
+</script>
+
+
+
+
+Is Java Enabled?
+The method javaEnabled() returns true if Java is enabled:
+
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = navigator.javaEnabled();
+</script>
+
+
+
+
+The window.alert() method can be written without the window prefix.
+
+Example
+alert("I am an alert box!");
+
+
+
+
+The window.confirm() method can be written without the window prefix.
+
+Example
+var r = confirm("Press a button");
+if (r == true) {
+    x = "You pressed OK!";
+} else {
+    x = "You pressed Cancel!";
+}
+
+
+
+
+
+The window.prompt() method can be written without the window prefix.
+
+Example
+var person = prompt("Please enter your name", "Harry Potter");
+if (person != null) {
+    document.getElementById("demo").innerHTML =
+    "Hello " + person + "! How are you today?";
+}
+
+
+
+line breaks
+alert("Hello\nHow are you?");
+
+
+
+
+The setTimeout() Method
+window.setTimeout(function1, milliseconds);
+The window.setTimeout() method can be written without the window prefix.
+
+The first parameter is a function1 to be executed.
+
+The second parameter indicates the number of milliseconds before execution.
+
+
+
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click "Try it". Wait 3 seconds, and the page will alert "Hello".</p>
+*/
+<button onclick="setTimeout(myFunction, 3000);">Try it</button>			/
+/*
+<script>
+function myFunction() {
+    alert('Hello');
+}
+</script>
+
+</body>
+</html>
+*/
+
+
+
+
+How to Stop the Execution?
+The clearTimeout() method stops the execution of the 'function' specified in setTimeout().
+
+window.clearTimeout(timeoutVariable)
+The window.clearTimeout() method can be written without the window prefix.
+
+The clearTimeout() method uses the variable returned from setTimeout():
+
+myVar = setTimeout(function1, milliseconds);
+clearTimeout(myVar);
+
+
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click "Try it". Wait 3 seconds. The page will alert "Hello".</p>
+<p>Click "Stop" to prevent the first function to execute.</(p>
+<p>(You must click "Stop" before the 3 seconds are up.)</p>
+
+<button onclick="myVar = setTimeout(myFunction, 3000)">Try it</button>
+
+<button onclick="clearTimeout(myVar)">Stop it</button>
+
+<script>
+function myFunction() {
+    alert("Hello");
+}
+</script>
+</body>
+</html>
+
+*/
+
+
+
+
+
+The setInterval() Method
+The setInterval() method repeats a given function1 at every given time-interval.
+
+window.setInterval(function1, milliseconds);
+
+<script>
+var myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+</script>																				/
+
+
+
+
+How to Stop the Execution?
+The clearInterval() method stops the executions of the function1 specified in the setInterval() method.
+
+window.clearInterval(timerVariable)
+The window.clearInterval() method can be written without the window prefix.
+
+The clearInterval() method uses the variable returned from setInterval():
+
+myVar = setInterval(function1, milliseconds);
+clearInterval(myVar);
+
+
+
+
+//example
+<button onclick="timedText()">Try it</button>
+
+<p id="demo">Click on "Try it". I will display when two, four, and six seconds have passed.</p>
+
+<script>
+function timedText() {
+    setTimeout(myTimeout1, 2000)//同时开始计数
+    setTimeout(myTimeout2, 4000)//同时开始计数
+    setTimeout(myTimeout3, 6000)//同时开始计数
+}
+function myTimeout1() {
+    document.getElementById("demo").innerHTML = "2 seconds";
+}
+function myTimeout2() {
+    document.getElementById("demo").innerHTML = "4 seconds";
+}
+function myTimeout3() {
+    document.getElementById("demo").innerHTML = "6 seconds";
+}
+</script>/
+
+
+
+
+
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    */
+    var t = setTimeout(startTime, 500);//调用自己，相当于循环
+    /*
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+</head>
+
+<body onload="startTime()">
+
+<div id="txt"></div>
+
+</body>
+</html>
+
+*/
+
+
+
+
+Create a Cookie with JavaScript
+document.cookie = "username=John Doe";
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";//到期时间
+Read a Cookie with JavaScript
+var x = document.cookie;
+document.cookie will return all cookies in one string much like: cookie1=value; cookie2=value; cookie3=value;
+With JavaScript, you can change a cookie the same way as you create it:
+document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+Deleting a cookie is very simple. Just set the expires parameter to a passed date:
+document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";//使到期时间是已经过去的时间
+
+
+
+cookie
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+</script>
+</head>
+<body onload="checkCookie()">
+</body>
+</html>
+
+
+
+
+//disable a button
+function disableElement() {
+    document.getElementById("btn01").disabled = true;
+}
+
+//summit a form
+<form id="frm1" action="form_action.asp">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br><br>
+  <input type="button" onclick="myFunction()" value="Submit">
+</form>																		/
+
+//reset a form
+<form id="frm1">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br><br>
+  <input type="button" onclick="myFunction()" value="Reset">
+</form>
+
+<script>
+function myFunction() {
+    document.getElementById("frm1").reset();
+}
+</script>
+
+
+//Click "Try it" to display the value of each element in the form.
+
+Try it
+Donald
+Duck
+Submit
+
+function myFunction() {
+    var x = document.getElementById("frm1");
+    var text = "";
+    var i;
+    for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value + "<br>";
+    }
+    document.getElementById("demo").innerHTML = text;
+}
+
+
+
+// display the action of a form
+<form id="frm1" action="form_action.asp">
+  First name: <input type="text" name="fname" value="Donald"><br>
+  Last name: <input type="text" name="lname" value="Duck"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click "Try it" to display the value of the form's action attribute:</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("frm1").action;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>																	/
+
+
+
+
+//display method
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="frm1" action="form_action.asp" method="get">
+  First name: <input type="text" name="fname" value="Donald"><br>
+  Last name: <input type="text" name="lname" value="Duck"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click "Try it" to display the value of the form method.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("frm1").method;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+</body>
+</html>/
+
+
+点下按钮后，发出如下请求，表单自动在get url后加参数
+GET /js/form_action.asp?fname=Donald&lname=Duck HTTP/1.1
+
+
+
+form的action target ？
+
+
+
+//dropdown list
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function disable() {
+    document.getElementById("mySelect").disabled=true;
+}
+function enable() {
+    document.getElementById("mySelect").disabled=false;
+}
+</script>
+</head>
+<body>
+
+<form>
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+<br><br>
+<input type="button" onclick="disable()" value="Disable list">
+<input type="button" onclick="enable()" value="Enable list">
+</form>
+
+</body>
+</html>
+
+
+
+
+
+//Get the id of the form that contains the dropdown list
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="myForm">
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+</form>
+
+<p>The id of the form is:<p>
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML = document.getElementById("mySelect").form.id;
+</script>
+
+</body>
+</html>
+
+
+
+//Get the number of options in the dropdown list
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<form>
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+</form>
+
+<p>There are <span id="demo">0</span> options in the list.</p>
+
+<script>
+document.getElementById("demo").innerHTML =
+document.getElementById("mySelect").length;
+</script>
+
+</body>
+</html>
+
+
+
+
+// change the dropdown list size
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function changeSize() {
+    document.getElementById("mySelect").size = 3;
+}
+</script>
+</head>
+<body>
+
+<form>
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Banana</option>
+  <option>Orange</option>
+  <option>Melon</option>
+</select>
+<input type="button" onclick="changeSize()" value="Change size">
+</form>
+
+</body>
+</html>
+
+
+
+
+//多选mutiple choice
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function selectMultiple() {
+    document.getElementById("mySelect").multiple = true;
+}
+</script>
+</head>
+<body>
+
+<form>
+<select id="mySelect" size="4">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+<input type="button" onclick="selectMultiple()" value="Select multiple">
+</form>
+
+<p>Before you click "Select multiple", you cannot select more than one option (by holding down the Shift or Ctrl key).</p>
+<p>After you have clicked "Select multiple", you can.</p>
+
+</body>
+</html>
+
+
+
+
+//处理选中的数据
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function getOption() {
+    var obj = document.getElementById("mySelect");
+    document.getElementById("demo").innerHTML =
+    obj.options[obj.selectedIndex].text;
+}
+</script>
+</head>
+<body>
+
+<form>
+Select your favorite fruit:
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Orange</option>
+  <option>Pineapple</option>
+  <option>Banana</option>
+</select>
+<br><br>
+<input type="button" onclick="getOption()" value="Click Me!">
+</form>
+
+<p id="demo"></p>
+
+</body>
+</html>/
+//document.getElementById("mySelect").selectedIndex  012
+
+
+//处理所有选项数据
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function getOptions() {
+    var x = document.getElementById("mySelect");
+    var txt = "";
+    var i;
+    for (i = 0; i < x.length; i++) {
+        txt = txt + " " + x.options[i].text;
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+</head>
+<body>
+
+<form>
+Select your favorite fruit:
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Orange</option>
+  <option>Pineapple</option>
+  <option>Banana</option>
+</select>
+<br><br>
+<input type="button" onclick="getOptions()" value="Output all options">
+</form>
+
+<p id="demo"></p>
+
+</body>
+</html>/
+
+
+
+
+
+//change options of dropdown list
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function changeText() {
+    x = document.getElementById("mySelect");
+    x.options[x.selectedIndex].text = "Melon";
+}
+</script>
+</head>
+<body>
+
+<form>
+Select your favorite fruit:
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Orange</option>
+  <option>Pineapple</option>
+  <option>Banana</option>
+</select>
+<br><br>
+<input type="button" onclick="changeText()" value="Set text of selected option">
+</form>
+
+</body>
+</html>
+
+
+
+
+
+//remove the options of dropdown list
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function removeOption() {
+    var x = document.getElementById("mySelect");
+    x.remove(x.selectedIndex);
+}
+</script>
+</head>
+<body>
+
+<form>
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+<input type="button" onclick="removeOption()" value="Remove the selected option">
+</form>
+
+</body>
+</html>
+
+
+//<anchor>地址
+//<a id="myAnchor" type="text/html" href="http://www.w3schools.com/">W3Schools</a>
+var x = document.getElementById("myAnchor").href;
+var x = document.getElementById("myAnchor").hreflang;
+var x = document.getElementById("myAnchor").id;
+var x = document.getElementById("myAnchor").rel;
+var x = document.getElementById("w3s").target;
+var x = document.getElementById("myAnchor").type;
+
+
+//area
+//<area id="venus" shape="circle" coords="124,58,8" alt="A beautiful planet" href="venus.htm">
+var x = document.getElementById("venus").alt;
+var x = document.getElementById("venus").coords;
+var x = document.getElementById("venus").shape;
+var x = document.getElementById("venus").href;
+var x = document.getElementById("venus").protocol;
+var x = document.getElementById("venus").hostname;
+var x = document.getElementById("venus").port;
+var x = document.getElementById("venus").pathname;
+//<area id="venus" shape="circle" coords="124,58,8" alt="Venus" href="venus.htm?id=venus">
+var x = document.getElementById("venus").search;//?id=venus
+//<area id="venus" shape="circle" coords="124,58,8" alt="Venus" href="venus.htm#description">
+var x = document.getElementById("venus").hash;//#description
+//<area id="venus" shape="circle" coords="124,58,8" alt="Venus" href="venus.htm" target="_self">
+var x = document.getElementById("venus").target;//_self
+
+
+
+//base object
+//<base id="htmldom" href="http://www.w3schools.com/jsref/">
+//<base id="htmldom" target="_self" href="http://www.w3schools.com/jsref/">
+var x = document.getElementById("htmldom").href;//http://www.w3schools.com/jsref/
+var x = document.getElementById("htmldom").target;//_self
+
+
+
+//iFrame object
+//<iframe id="myframe" src="demo_iframe.htm">
+//<iframe id="myframe" src="/default.asp" height="200" width="250">
+//<iframe id="myframe" src="/default.asp" name="iframe_a"></iframe>
+//change color
+var x = document.getElementById("myframe");
+    x.style.backgroundColor = "red";
+var x = document.getElementById("myframe").height;
+var x = document.getElementById("myframe").name;
+var x = document.getElementById("myframe").src;
+document.getElementById("myframe").src = "http://www.cnn.com";
+
+
+
+//image
+//<img id="myImg" src="compman.gif" alt="Crazy computerman" width="107" height="98">
+var x = document.getElementById("myImg").alt;//Crazy computerman
+var x = document.getElementById("myImg").height;
+
+<img id="myimage" onclick="changeImage()"
+src="compman_lowres.gif" width="107" height="98">
+function changeImage() {
+    document.getElementById('myimage').src = "compman.gif";
+}
+
+//<img id="myImg" src="compman.gif" width="107" height="98">
+var x = document.getElementById("myImg").src;//http://www.w3schools.com/js/compman.gif
+//<img id="planets" src="planets.gif" width="145" height="126" usemap="#planetmap">
+var x = document.getElementById("planets").useMap;//#planetmap
+
+
+
+
+//table object
+/*
+<table id="myTable" style="border: 1px solid black">
+<tr>
+<td>cell 1</td>
+<td>cell 2</td>
+</tr>
+<tr>
+<td>cell 3</td>
+<td>cell 4</td>
+</tr>
+</table>
+*/
+document.getElementById(id).style.border = "5px solid";
+document.getElementById(id).style.padding = "15px";
+var x = document.getElementById(id).rows[0].cells;//cell 1
+document.getElementById(id).createCaption().innerHTML = "My new caption";
+onclick="document.getElementById('myTable').deleteRow(0)"
+//insert rows
+<input type="button" onclick="insRow('myTable')" value="Insert row">
+function insRow(id) {
+    var x = document.getElementById(id).insertRow(0);
+    var y = x.insertCell(0);
+    var z = x.insertCell(1);
+    y.innerHTML = z.innerHTML = "New";
+}
+//change content
+<input type="button" onclick="changeContent('myTable', 0, 0, 'Hello')" value="Change content">
+function changeContent(id, row, cell, content) {
+    var x = document.getElementById(id).rows[row].cells;
+    x[cell].innerHTML = content;
+}
+
+
+
+
+//event
+When you leave the input field
+<input type="text" id="fname" onblur="myFunction()">
+
+//dropdown list onselect
+<select id="browsers" onchange="preferedBrowser()">
+<option value="Chrome">Chrome</option>
+<option value="Internet Explorer">Internet Explorer</option>
+<option value="Firefox">Firefox</option>
+</select>
+function preferedBrowser() {
+    prefer = document.forms[0].browsers.value;
+    alert("You prefer browsing internet with " + prefer);
+}
+
+<input type="text" onfocus="myFunction(this)">
+<input type="text" value="Hello world!" onselect="myFunction()">
+
+//button summit form
+/*
+<form onsubmit="confirmInput()" action="http://www.w3schools.com/">
+Enter your name: <input id="fname" type="text" size="20">
+<input type="submit">
+</form>  
+*/
+function confirmInput() {
+    fname = document.forms[0].fname.value;
+    alert("Hello " + fname + "! You will now be redirected to www.w3Schools.com");
+}
+
+//button form reset
+/*
+<form onreset="message()">
+Enter your name: <input type="text" size="20">
+<input type="reset">
+</form>
+*/
+function message() {
+    alert("This alert box was triggered by the onreset event handler");
+}
+//keyboard
+<input type="text" onkeydown="myFunction()">
+<input type="text" onkeypress="myFunction()">
+<input type="text" id="fname" onkeyup="myFunction()">
+<input type="text" id="fname" onkeyup="myFunction()">
+
+<input type="text" name="myInput" onkeyup="writeMessage()" size="20">
+function writeMessage() {
+    document.forms[0].mySecondInput.value = document.forms[0].myInput.value;
+}
+//传参
+<form>
+Write a message:<br>
+<input
+type="text"
+onkeydown="color('yellow')"
+onkeyup="color('white')"
+name="myInput">
+</form>/
+function color(color) {
+    document.forms[0].myInput.style.background = color;
+}
+
+//mouse
+//传参this
+<p onmousedown="myFunction(this,'red')" onmouseup="myFunction(this,'green')">
+function myFunction(elmnt, clr) {
+    elmnt.style.color = clr;
+}
+
+点哪显示哪
+<body onmousedown="whichElement(event)">
+function whichElement(e) {
+    var targ;
+    if (!e) {
+        var e = window.event;
+    }
+    if (e.target) {
+        targ=e.target;
+    } else if (e.srcElement) {
+        targ=e.srcElement;
+    }
+    var tname;
+    tname = targ.tagName;
+    alert("You clicked on a " + tname + " element.");
+}
+
+
+显示点击的是哪个鼠标键
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function WhichButton(event) {
+    alert("You pressed button: " + event.button)
+}
+</script>
+</head>
+<body>
+
+<div onmousedown="WhichButton(event);">Click this text (with one of your mouse-buttons)
+<p>
+0 Specifies the left mouse-button<br>
+1 Specifies the middle mouse-button<br>
+2 Specifies the right mouse-button</p>
+<p><strong>Note:</strong> Internet Explorer 8, and earlier, returns another result:<br>
+1 Specifies the left mouse-button<br>
+4 Specifies the middle mouse-button<br>
+2 Specifies the right mouse-button</p>
+
+</div>
+</body>
+</html>
+*/
+
+
+onmousemove
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function myFunction(e) {
+    x = e.clientX;
+    y = e.clientY;
+    coor = "Coordinates: (" + x + "," + y + ")";
+    document.getElementById("demo").innerHTML = coor
+}
+
+function clearCoor() {
+    document.getElementById("demo").innerHTML = "";
+}
+</script>
+</head>
+<body style="margin:0px;">
+
+<div id="coordiv" style="width:199px;height:99px;border:1px solid" onmousemove="myFunction(event)" onmouseout="clearCoor()"></div>
+
+<p>Mouse over the rectangle above, and get the coordinates of your mouse pointer.</p>
+
+<p id="demo"></p>
+
+</body>
+</html>
+*/
+
+
+改变图片css
+<img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="smiley.gif" alt="Smiley" width="32" height="32">
+function bigImg(x) {
+    x.style.height = "64px";
+    x.style.width = "64px";
+}
+
+
+imagemap
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function writeText(txt) {
+    document.getElementById("desc").innerHTML = txt;
+}
+</script>
+</head>
+
+<body>
+<img src ="planets.gif" width ="145" height ="126" alt="Planets" usemap="#planetmap" />
+
+<map name="planetmap">
+<area shape ="rect" coords ="0,0,82,126"
+onmouseover="writeText('The Sun and the gas giant planets like Jupiter are by far the largest objects in our Solar System.')"
+href ="sun.htm" target ="_blank" alt="Sun" />
+
+<area shape ="circle" coords ="90,58,3"
+onmouseover="writeText('The planet Mercury is very difficult to study from the Earth because it is always so close to the Sun.')"
+href ="mercur.htm" target ="_blank" alt="Mercury" />
+
+<area shape ="circle" coords ="124,58,8"
+onmouseover="writeText('Until the 1960s, Venus was often considered a twin sister to the Earth because Venus is the nearest planet to us,
+ and because the two planets seem to share many characteristics.')"
+href ="venus.htm" target ="_blank" alt="Venus" />
+</map>
+
+<p id="desc">Mouse over the sun and the planets and see the different descriptions.</p>
+
+</body>
+</html>
+*/
+
+button
+<button type="button" onclick="displayDate()">Display Date</button>
+//double click
+<p ondblclick="myFunction()">Doubleclick this paragraph to trigger a function.</p>
+
+
+onload
+<body onload="myFunction()">
+<img src="w3javascript.gif" onload="loadImage()" width="100" height="132">
+//onerror
+<img src="image.gif" onerror="imgError()">
+function imgError() {
+    alert('The image could not be loaded.');
+}
+onresize
+<body onresize="myFunction()">
+
+which key
+<body onkeyup="whichButton(event)">
+function whichButton(event) {
+    document.getElementById("demo").innerHTML = event.keyCode;
+}
+
+
+mouse position
+<p onmousedown="show_coords(event)"><>
+function show_coords(event) {
+    document.getElementById("demo").innerHTML =
+    "X= " + event.clientX + "<br>Y= " + event.clientY;
+}
+
+<p onmousedown="coordinates(event)"><>
+function coordinates(event) {
+    document.getElementById("demo").innerHTML =
+    "X = " + event.screenX + "<br>Y = " + event.screenY;
+}
+
+shift key pressed
+<body onmousedown="isKeyPressed(event)">
+function isKeyPressed(event) {
+    var text = "The shift key was NOT pressed!";
+    if (event.shiftKey == 1) {
+        text = "The shift key was pressed!";
+    }
+    document.getElementById("demo").innerHTML = text;
+}
+
+event type
+<p onmousedown="getEventType(event)">
+function getEventType(event) {
+    document.getElementById("demo").innerHTML = event.type;
+}
+
+
+
+//按钮与新窗口
+<input type="button" value="Open Window" onclick="openWin()">
+function openWin() {
+    window.open("http://www.w3schools.com");
+}
+
+function openWin() {
+    window.open("http://www.w3schools.com","_blank","toolbar=yes, location=yes, directories=no, status=no, \
+    	menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400");
+}
+//赋值变量
+function openWin() {
+    myWindow = window.open("", "", "width=400, height=200");
+    myWindow.blur();
+}
+function blurWin() {
+    myWindow.blur();
+}
+function focusWin() {
+    myWindow.focus();
+}
+
+
+function closeWin() {
+    myWindow.close();
+}
+-------------------
+var myWindow;
+function openWin() {
+    myWindow = window.open("", "", "width=400 ,height=200");
+}
+
+function closeWin() {
+    if (myWindow) {
+        myWindow.close();
+    }
+}
+
+function checkWin() {
+    msg = ""
+    if (!myWindow) {
+        msg = "was never opened";
+    } else {
+        if (myWindow.closed) {
+            msg = "is closed";
+        } else {
+            msg = "is open";
+        }
+    
+    }
+    document.getElementById("msg").innerHTML =
+    "myWindow " + msg;
+}
+-------------------
+
+//原window显示文字，new window回指
+function openWin() {
+    var myWindow = window.open("", "", "width=400, height=200");
+    myWindow.opener.document.getElementById("demo").innerHTML =
+    "A new window has been opened.";
+}
+
+
+function moveWin() {
+    myWindow.moveBy(250, 250)
+}
+//focus
+function moveWin() {
+    myWindow.moveTo(300, 0);
+    myWindow.focus();
+}
+
+//打印
+function printPage() {
+    window.print();
+}
+
+---
+var w;
+function openwindow() {
+    w = window.open('','', 'width=100,height=100');
+    w.focus();
+}
+
+function myFunction() {
+    w.resizeBy(50, 50);
+    w.focus();
+}
+
+function myFunction() {
+    w.resizeTo(500, 500);
+    w.focus();
+}
+---
+
+//本window
+function scrollWindow() {
+    window.scrollBy(0, 10);
+}
+
+function scrollWindow() {
+    window.scrollTo(0, 100);
+}
+
+
+location load a new document
+<input type="button" value="Load new document" onclick="newDoc()">
+function newDoc() {
+    window.location.assign("http://www.w3schools.com")
+}
+
+replace current location
+<button onclick="window.location.replace('http://www.w3schools.com')">
+
+break out frame
+<input type="button" onclick="breakout()" value="Break out of frame!">
+function breakout() {
+    if (window.top != window.self) {
+        window.top.location = "tryjs_breakout.htm";
+    }
+}
+
+history
+document.getElementById("demo").innerHTML = history.length;
+go back
+<button onclick="goBack()">Go Back</button>					/
+function goBack() {
+    window.history.back()
+}
+go back2
+<button onclick="goBack()">Go 2 pages back</button>			/
+function goBack() {
+    window.history.go(-2)
+}
+go forward
+<button onclick="goForward()">Go Forward</button>			/
+function goForward() {
+    window.history.forward()
+}
+
+confirm box
+function myFunction() {
+    var x;
+    if (confirm("Press a button!") == true) {
+        x = "You pressed OK!";
+    } else {
+        x = "You pressed Cancel!";
+    }
+    document.getElementById("demo").innerHTML = x;
+}
+
+prompt box
+返回值
+function myFunction() {
+    var person = prompt("Please enter your name", "Harry Potter");
+    
+    if (person != null) {
+        document.getElementById("demo").innerHTML =
+        "Hello " + person + "! How are you today?";
+    }
+}
+
+timer
+<button onClick="setInterval(myCounter, 1000)">Start counter!</button>			/
+var c = 0;
+function myCounter() {
+    document.getElementById("demo").innerHTML = ++c;
+}
+
+<button onClick="myTimer = setInterval(myCounter, 1000)">Start counter!</button>		/
+<button onClick="clearInterval(myTimer)">Stop counter!</button>							/
+
+
+cookie
+/*
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+</script>
+</head>
+<body onload="checkCookie()">
+</body>
+</html>
+
+
+*/
