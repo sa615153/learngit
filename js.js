@@ -144,7 +144,7 @@ And more ...
 
 </body>
 </html>
-///文字也可以点击， 也有onclick属性
+///文字也可以点击， 也有onclick事件
 
 
 
@@ -162,12 +162,13 @@ And more ...
 </html>                                                                                                   /
 
 
-
-String Methods and Properties
+------------------------------------------------------------------------------
+STRING
+------------------------------------------------------------------------------
+Methods and Properties
 Primitive values, like "John Doe", cannot have properties or methods (because they are not objects).
 
-But with JavaScript, methods and properties are also available to primitive values, 
-because JavaScript treats primitive values as objects when executing methods and properties.
+JavaScript treats primitive values as objects when executing methods and properties.
 
 
 
@@ -188,9 +189,7 @@ var pos = str.search("locate");
 
 
 var str = "Apple, Banana, Kiwi";
-var res = str.slice(7,13);
-The result of res will be:
-Banana
+var res = str.slice(7,13);//Banana
 
 If a parameter is negative, the position is counted from the end of the string.
 This example slices out a portion of a string from position -12 to position -6:
@@ -282,7 +281,9 @@ for (i = 0; i < arr.length; i++) {
 }
 
 
-
+------------------------------------------------------------------------------
+NUMBER
+------------------------------------------------------------------------------
 var x = 100 / "Apple";  // x will be NaN (Not a Number)
 isNaN(x);               // returns true because x is Not a Number
 
@@ -396,6 +397,9 @@ http://www.w3schools.com/jsref/jsref_obj_number.asp
 
 
 
+------------------------------------------------------------------------------
+MATH
+------------------------------------------------------------------------------
 Math.random();       // returns a random number
 Math.min(0, 150, 30, 20, -8, -200);      // returns -200
 Math.max(0, 150, 30, 20, -8, -200);      // returns 150
@@ -418,8 +422,9 @@ Math.LOG2E      // returns base 2 logarithm of E
 Math.LOG10E     // returns base 10 logarithm of E
 
 
-
-Math Object Methods
+------------------------------------------------------------------------------
+MATH Object Methods
+------------------------------------------------------------------------------
 Method	Description
 abs(x)	Returns the absolute value of x
 acos(x)	Returns the arccosine of x, in radians
@@ -441,7 +446,9 @@ sqrt(x)	Returns the square root of x
 tan(x)	Returns the tangent of an angle
 
 
-
+------------------------------------------------------------------------------
+DATE
+------------------------------------------------------------------------------
 document.getElementById("demo").innerHTML = Date();
 
 new Date()
@@ -601,7 +608,7 @@ getTime()	Get the time (milliseconds since January 1, 1970)
 
 
 
-Date Set Methods
+DATE Set Methods
 Set methods are used for setting a part of a date. Here are the most common (alphabetically):
 
 Method	Description
@@ -680,8 +687,9 @@ getUTCSeconds()	Same as getSeconds(), but returns the UTC seconds
 
 
 
-
-//////////////////////array
+------------------------------------------------------------------------------
+//////////////////////ARRAY
+------------------------------------------------------------------------------
 var array-name = [item1, item2, ...];       
 With JavaScript, the full array can be accessed by referring to the array name
 
@@ -773,8 +781,9 @@ var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits instanceof Array     // returns true
 
 
-
-///array method
+------------------------------------------------------------------------------
+///ARRAY method
+------------------------------------------------------------------------------
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 document.getElementById("demo").innerHTML = fruits.toString();
 The join() method also joins all array elements into a string.
@@ -910,8 +919,9 @@ http://www.w3schools.com/jsref/jsref_obj_array.asp
 All JavaScript objects have a valueOf() and a toString() method.
 
 
-
-///sort array
+------------------------------------------------------------------------------
+///sort ARRAY
+------------------------------------------------------------------------------
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort();            // Sorts the elements of fruits 
 fruits.reverse();         // Reverses the order of the elements
@@ -1033,7 +1043,9 @@ function displayCars() {
 }
 
 
-
+------------------------------------------------------------------------------
+BOOLEAN
+------------------------------------------------------------------------------
 Boolean(10 > 9)        // returns true
 (10 > 9)              // also returns true
 10 > 9                // also returns true
@@ -1091,8 +1103,9 @@ Operator	Description	Example	Same as	Result	Decimal
 >>	Right shift	x = 5 >> 1	0101 >> 1	0010	2
 
 
-
-//if
+------------------------------------------------------------------------------
+//IF
+------------------------------------------------------------------------------
 if (hour < 18) {
     greeting = "Good day";
 } else {
@@ -1110,7 +1123,9 @@ if (time < 10) {
 }
 
 
-
+------------------------------------------------------------------------------
+SWITCH
+------------------------------------------------------------------------------
 switch(expression) {
     case n:
         code block
@@ -1173,7 +1188,9 @@ switch (new Date().getDay()) {
 }
 
 
-
+------------------------------------------------------------------------------
+FOR
+------------------------------------------------------------------------------
 for (statement 1; statement 2; statement 3) {
     code block to be executed
 }
@@ -1182,8 +1199,9 @@ Otherwise the loop will never end. This will crash your browser.
 Read about breaks in a later chapter of this tutorial.
 
 
-
-The For/In Loop
+------------------------------------------------------------------------------
+The FOR/In Loop
+------------------------------------------------------------------------------
 The JavaScript for/in statement loops through the properties of an object:
 
 Example
@@ -1223,6 +1241,9 @@ A code block is a block of code between { and }.
 
 
 
+------------------------------------------------------------------------------
+TYPEOF
+------------------------------------------------------------------------------
 Number() converts to a Number, String() converts to a String, Boolean() converts to a Boolean.
 JavaScript Data Types
 In JavaScript there are 5 different data types that can contain values:
@@ -1253,8 +1274,9 @@ typeof myCar                  // Returns "undefined" *
 typeof null                   // Returns "object"
 
 
-
-The constructor Property
+------------------------------------------------------------------------------
+The constructor Property   /CONSTRUCTOR
+------------------------------------------------------------------------------
 The constructor property returns the constructor 'function' for all JavaScript variables.
 
 Example
@@ -1277,8 +1299,9 @@ function isDate(myDate) {
 }
 
 
-
-//type conversion
+------------------------------------------------------------------------------
+//type conversion / TYPECONVERSION
+------------------------------------------------------------------------------
 The global method String() can convert numbers to strings.
 It can be used on any type of numbers, literals, variables, or expressions:
 Example
@@ -1339,8 +1362,9 @@ Numbers and booleans are also converted, but this is not very visible:
 // if myVar = false           // toString converts to "false"
 
 
-
-//////JavaScript Regular Expressions
+------------------------------------------------------------------------------
+//////JavaScript Regular Expressions/REGULAREXPRESSIONS
+------------------------------------------------------------------------------
 Syntax
 /pattern/modifiers;
 
@@ -1393,8 +1417,9 @@ e
 http://www.w3schools.com/jsref/jsref_obj_regexp.asp
 
 
-
-//////////JavaScript Errors - Throw and Try to Catch
+------------------------------------------------------------------------------
+//////////JavaScript Errors - Throw and Try to Catch/ERRORTHROWTRYCATCH
+------------------------------------------------------------------------------
 <!DOCTYPE html>
 <html>
 <body>
@@ -1488,8 +1513,9 @@ finally {
     }
 
 
-
-/////////////////debugger
+------------------------------------------------------------------------------
+/////////////////debugger/DEBUGGER
+------------------------------------------------------------------------------
 Normally, otherwise follow the steps at the bottom of this page, 
 you 'activate debugging' in your browser with the F12 key, 
 and select "Console" in the debugger menu.and "source" for breakpoint
@@ -1501,12 +1527,13 @@ console.log(c);
 </script>           /
 
 
+------------------------------------------------------------------------------
+JavaScript Hoisting/HOISTING
+------------------------------------------------------------------------------
 
-JavaScript Hoisting
-
-
-
-Strict Mode
+------------------------------------------------------------------------------
+Strict Mode/STRICTMODE
+------------------------------------------------------------------------------
 As an example, in normal JavaScript, mistyping a variable name creates a new global variable. 
 In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
 
@@ -1594,8 +1621,9 @@ The "use strict" directive is only recognized at the beginning of a script or a 
 
 
 
-
-//////////JavaScript Style Guide and Coding Conventions
+------------------------------------------------------------------------------
+//////////JavaScript Style Guide and Coding Conventions/STYLEGUIDE
+------------------------------------------------------------------------------
 Variable Names
 At W3schools we use camelCase for identifier names (variables and functions).
 
@@ -1848,8 +1876,9 @@ for (var i = 0; i < 10; i++) {
 return i;//10
 
 
-
-/////////////////////JavaScript Performance
+------------------------------------------------------------------------------
+/////////////////////JavaScript Performance/PERFORMANCE
+------------------------------------------------------------------------------
 Reduce Activity in Loops
 Bad Code:
 var i;
@@ -1917,8 +1946,9 @@ function downScripts() {
 </script>/
 
 
-
-////////////////JavaScript Reserved Words
+------------------------------------------------------------------------------
+////////////////JavaScript Reserved Words/RESERVEDWORDS
+------------------------------------------------------------------------------
 http://www.w3schools.com/js/js_reserved.asp
 
 
@@ -1951,14 +1981,14 @@ obj.employees[1].firstName + " " + obj.employees[1].lastName;
 </script>         /
 
 
-
+------------------------------------------------------------------------------
 -----------------------
 |JavaScript Forms     |
 -----------------------
-
-
+------------------------------------------------------------------------------
+---------------------------------------
 JavaScript Form Validation
-
+---------------------------------------
 <!DOCTYPE html>
 <html>
 <head>
@@ -1988,8 +2018,9 @@ Name: <input type="text" name="fname">
 
 <input id="numb">
 x = document.getElementById("numb").value;
-
+---------------------------------------
 Automatic HTML Form Validation
+---------------------------------------
 HTML form validation can be performed automatically by the browser:
 
 If a form field (fname) is empty, the required attribute prevents this form from being submitted:
@@ -2001,8 +2032,9 @@ HTML Form Example
 </form>                                               /
 Automatic HTML form validation does not work in Internet Explorer 9 or earlier.
 
-
+---------------------------------------
 Constraint Validation HTML Input Attributes
+---------------------------------------
 Attribute	Description
 disabled	Specifies that the input element should be disabled
 max	Specifies the maximum value of an input element
@@ -2022,9 +2054,9 @@ http://www.w3schools.com/css/css_pseudo_classes.asp
 
 
 
-
+---------------------------------------
 The checkValidity() Method
-
+---------------------------------------
 
 <!DOCTYPE html>
 <html>
@@ -2054,8 +2086,9 @@ function myFunction() {
 </html>                                                                   /
 
 
-
+---------------------------------------
 The rangeOverflow Property
+---------------------------------------
 <input id="id1" type="number" max="100">
 <button onclick="myFunction()">OK</button>
 
@@ -2073,8 +2106,9 @@ function myFunction() {
 
 
 
-
+---------------------------------------
 The rangeUnderflow Property
+---------------------------------------
 <input id="id1" type="number" min="100">
 <button onclick="myFunction()">OK</button>                                /
 
@@ -2090,8 +2124,9 @@ function myFunction() {
 }
 </script>                                                                 /
 
-
-
+------------------------------------------------------------------------------
+OBJECT
+------------------------------------------------------------------------------
 var person = {
     firstName:"John",
     lastName:"Doe",
@@ -2198,8 +2233,9 @@ function person(firstName, lastName, age, eyeColor) {
 }
 
 
-
-Creating a Prototype
+---------------------------------------
+Creating a Prototype/PROTOTYPE/CONSTRUCTOR
+---------------------------------------
 The standard way to create an object prototype is to use an object constructor function:
 
 Example
@@ -2251,7 +2287,7 @@ function Person(first, last, age, eyecolor) {
 
 
 
-Adding Methods to a Prototype
+Adding Methods to a Prototype/PROTOTYPE
 Your constructor function can also define methods:
 
 Example
@@ -2265,7 +2301,7 @@ function Person(first, last, age, eyecolor) {
 
 
 
-Using the prototype Property
+Using the prototype Property/PROTOTYPE
 The JavaScript prototype property allows you to add new properties to an existing prototype:
 
 Example
@@ -2293,8 +2329,9 @@ Person.prototype.name = function() {
 };
 //var myFather = new Person("John", "Doe", 50, "blue");
 
-
-
+------------------------------------------------------------------------------
+FUNCTION
+------------------------------------------------------------------------------
 function functionName(parameters) {
   code to be executed
 }
@@ -2354,10 +2391,11 @@ var txt = myFunction.toString();
 
 
 A 'function' defined as the property of an object, is called a method to the object.
-A 'function' designed to create new objects, is called an object constructor.
+A 'function' designed to create new objects, is called an object constructor./CONSTRUCTOR
 
-
-
+------------------------------------------------------------------------------
+PARAMETER
+------------------------------------------------------------------------------
 A JavaScript 'function' does not perform any checking on parameter values (arguments).Parameter Rules
 JavaScript 'function' definitions do not specify data types for parameters.
 JavaScript functions do not perform type checking on the passed arguments.
@@ -2415,9 +2453,12 @@ In JavaScript, object references are values.
 //Changes to object properties are visible (reflected) outside the function.
 
 
-
+------------------------------------------------------------------------------
 //JavaScript Function Invocation
+------------------------------------------------------------------------------
+---------------------------------------
 Invoking a Function as a Function
+---------------------------------------
 Example
 function myFunction(a, b) {
     return a * b;
@@ -2456,8 +2497,9 @@ Invoking a 'function' as a global 'function', causes the value of this to be the
 Using the window object as a variable can easily crash your program.
 
 
-
+---------------------------------------
 Invoking a Function as a Method
+---------------------------------------
 In JavaScript you can define 'function' as object methods.
 
 The following example creates an object (myObject), with two properties (firstName and lastName), and a method (fullName):
@@ -2484,14 +2526,15 @@ var myObject = {
 
 
 
-
+---------------------------------------
 Invoking a Function with a Function Constructor
+---------------------------------------
 If a 'function' invocation is preceded with the new keyword, it is a constructor invocation.
 
 It looks like you create a new function, but since JavaScript functions are objects you actually create a new object:
 
 Example
-// This is a function constructor:
+// This is a function constructor:/CONSTRUCTOR
 function myFunction(arg1, arg2) {
     this.firstName = arg1;
     this.lastName  = arg2;
@@ -2512,8 +2555,9 @@ The value of this will be the new object created when the function is invoked.
 
 
 
-
+---------------------------------------
 Invoking a Function with a Function Method
+---------------------------------------
 In JavaScript, functions are objects. JavaScript functions have properties and methods.
 
 call() and apply() are predefined JavaScript 'function' methods. Both methods can be used to invoke a 'function', 
@@ -2545,8 +2589,9 @@ With call() or apply() you can set the value of this, and invoke a 'function' as
 
 
 
-
-//closure
+------------------------------------------------------------------------------
+//closure/CLOSURE
+------------------------------------------------------------------------------
 global variables belong to the window object.
 Variables created without the keyword var, are always global, even if they are created inside a 'function'.
 
@@ -2587,9 +2632,9 @@ A closure is a 'function' having access to the parent scope, even after the pare
 
 
 
------------------------
-html DOM
------------------------
+------------------------------------------------------------------------------
+html DOM /HTMLDOM
+------------------------------------------------------------------------------
 
 var myElement = document.getElementById("intro");
 
@@ -2640,12 +2685,13 @@ function myFunction() {
     }
     document.getElementById("demo").innerHTML =text;
 }
-</script>
+</script>																			/
 
 
 
-
+||||||||||||||||||||||||||||
 //write()
+||||||||||||||||||||||||||||
 <!DOCTYPE html>
 <html>
 <body>
@@ -2659,8 +2705,9 @@ document.write(Date());
 //<button onclick="document.write(123)">write</button>
 
 
-
+||||||||||||||||||||||||||||
 Changing the Value of an Attribute
+||||||||||||||||||||||||||||
 To change the value of an HTML attribute, use this syntax:
 
 document.getElementById(id).attribute=new value
@@ -2682,11 +2729,12 @@ document.getElementById("myImage").src = "landscape.jpg";
 </html>
 */
 
-
-
-
-
+------------------------------------------------------------------------------
+CSS
+------------------------------------------------------------------------------
+||||||||||||||||||||||||||||
 Changing HTML Style
+||||||||||||||||||||||||||||
 To change the style of an HTML element, use this syntax:
 
 document.getElementById(id).style.property=new style
@@ -2714,9 +2762,9 @@ document.getElementById("p2").style.fontSize = "larger";
 
 
 
-
+||||||||||||||||||||||||||||
 visibility
-
+||||||||||||||||||||||||||||
 <!DOCTYPE html>
 <html>
 <body>
@@ -2744,8 +2792,9 @@ This is a text.
  document.getElementById("demo").style.fontSize="40px"
 
 
-
- Create an Animation Container
+---------------------------------------
+ Create an Animation Container/ANIMATION
+---------------------------------------
 All animations should be relative to a container element.
 
 <!Doctype html>
@@ -2776,8 +2825,9 @@ All animations should be relative to a container element.
 </html>
 
 
-
+---------------------------------------
 Animation Code
+---------------------------------------
 JavaScript animations are done by programming gradual changes in an element's' style.
 
 The changes are called by a timer. When the timer interval is small, the animation looks continuous.
@@ -2832,8 +2882,9 @@ function myMove() {
 
 
 
-
-
+------------------------------------------------------------------------------
+eventEVENT
+------------------------------------------------------------------------------
 When a user clicks the mouse
 When a web page has loaded
 When an image has been loaded
@@ -3155,7 +3206,9 @@ http://www.w3schools.com/jsref/dom_obj_event.asp
 
 
 
-
+------------------------------------------------------------------------------
+nodeNODE
+------------------------------------------------------------------------------
 //dom tree
 <html>
 <body>
@@ -3184,8 +3237,9 @@ document.documentElement - The full document
 
 
 
-
+---------------------------------------
 create element
+---------------------------------------
 /*
 <!DOCTYPE html>
 <html>
@@ -3236,9 +3290,9 @@ element.insertBefore(para,child);
 
 
 
-
+---------------------------------------
 Removing Existing HTML Elements
-
+---------------------------------------
 To remove an HTML element, you must know the parent of the element:
 
 Example
@@ -3274,8 +3328,9 @@ But because of poor browser support, you should not use it.
 
 
 
-
+---------------------------------------
 Replacing HTML Elements 
+---------------------------------------
 To replace an element to the HTML DOM, use the replaceChild() method:
 /*
 <!DOCTYPE html>
@@ -3303,8 +3358,9 @@ parent.replaceChild(para,child);
 */
 
 
-
-HTML DOM Node List
+------------------------------------------------------------------------------
+HTML DOM Node List/nodeNODE
+------------------------------------------------------------------------------
 var x = document.getElementsByTagName("p");//Note: The index starts at 0.
 y = x[1];
 var z = x.length
@@ -3327,10 +3383,14 @@ for (i = 0; i <	myNodelist.length; i++) {
 // However, you cannot use Array Methods, like valueOf() or join() on the node list.
 
 
-
-JavaScript Window - The Browser Object Model
-
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+------------------------------------------------------------------------------
+JavaScript Window - The Browser Object Model/BROWSERbrowserBOM
+------------------------------------------------------------------------------
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+------------------------------------------------------------------------------
 The Window Object
+------------------------------------------------------------------------------
 window.document.getElementById("header");
 ||
 document.getElementById("header");
@@ -3360,8 +3420,9 @@ window.moveTo() -move the current window
 window.resizeTo() -resize the current window
 
 
-
-JavaScript Window Screen
+------------------------------------------------------------------------------
+JavaScript Window Screen/SCREEN
+------------------------------------------------------------------------------
 The window.screen object can be written without the window prefix.
 The window.screen object contains information about the user's' screen.
 
@@ -3386,9 +3447,9 @@ screen.colorDepth
 screen.pixelDepth
 
 
-
-window.location
-
+------------------------------------------------------------------------------
+window.location/LOCATION
+------------------------------------------------------------------------------
 window.location.href returns the href (URL) of the current page
 window.location.hostname returns the domain name of the web host
 window.location.pathname returns the path and filename of the current page
@@ -3414,8 +3475,9 @@ function newDoc() {
 
 
 
-
-Window History
+------------------------------------------------------------------------------
+Window History/HISTORY
+------------------------------------------------------------------------------
 The window.history object can be written without the window prefix.
 history.back() - same as clicking back in the browser
 history.forward() - same as clicking forward in the browser
@@ -3445,8 +3507,9 @@ function goForward() {
 */
 
 
-
-Window Navigator
+------------------------------------------------------------------------------
+Window Navigator/NAVIGATOR
+------------------------------------------------------------------------------
 The window.navigator object can be written without the window prefix.
 
 Some examples:
@@ -3550,8 +3613,9 @@ document.getElementById("demo").innerHTML = navigator.javaEnabled();
 </script>
 
 
-
-
+------------------------------------------------------------------------------
+alert/ALERT
+------------------------------------------------------------------------------
 The window.alert() method can be written without the window prefix.
 
 Example
@@ -3590,8 +3654,12 @@ alert("Hello\nHow are you?");
 
 
 
-
+------------------------------------------------------------------------------
+timing/TIMING
+------------------------------------------------------------------------------
+---------------------------------------
 The setTimeout() Method
+---------------------------------------
 window.setTimeout(function1, milliseconds);
 The window.setTimeout() method can be written without the window prefix.
 
@@ -3622,8 +3690,9 @@ function myFunction() {
 
 
 
-
+---------------------------------------
 How to Stop the Execution?
+---------------------------------------
 The clearTimeout() method stops the execution of the 'function' specified in setTimeout().
 
 window.clearTimeout(timeoutVariable)
@@ -3661,8 +3730,9 @@ function myFunction() {
 
 
 
-
+---------------------------------------
 The setInterval() Method
+---------------------------------------
 The setInterval() method repeats a given function1 at every given time-interval.
 
 window.setInterval(function1, milliseconds);
@@ -3678,8 +3748,9 @@ function myTimer() {
 
 
 
-
+---------------------------------------
 How to Stop the Execution?
+---------------------------------------
 The clearInterval() method stops the executions of the function1 specified in the setInterval() method.
 
 window.clearInterval(timerVariable)
@@ -3754,9 +3825,12 @@ function checkTime(i) {
 */
 
 
-
-
+------------------------------------------------------------------------------
+cookie/COOKIE
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 Create a Cookie with JavaScript
+------------------------------------------------------------------------------
 document.cookie = "username=John Doe";
 document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";//到期时间
 Read a Cookie with JavaScript
@@ -3817,12 +3891,17 @@ function checkCookie() {
 
 
 
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+examples/EXAMPLES
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 //disable a button
 function disableElement() {
     document.getElementById("btn01").disabled = true;
 }
-
+------------------------------------------------------------------------------
+form/FORM
+------------------------------------------------------------------------------
 //summit a form
 <form id="frm1" action="form_action.asp">
   First name: <input type="text" name="fname"><br>
@@ -3922,8 +4001,9 @@ GET /js/form_action.asp?fname=Donald&lname=Duck HTTP/1.1
 form的action target ？
 
 
-
-//dropdown list
+------------------------------------------------------------------------------
+//dropdown list/dropdownlist/DROPDOWNLIST
+------------------------------------------------------------------------------
 <!DOCTYPE html>
 <html>
 <head>
@@ -4201,7 +4281,9 @@ function removeOption() {
 </body>
 </html>
 
-
+------------------------------------------------------------------------------
+anchor/ANCHOR
+------------------------------------------------------------------------------
 //<anchor>地址
 //<a id="myAnchor" type="text/html" href="http://www.w3schools.com/">W3Schools</a>
 var x = document.getElementById("myAnchor").href;
@@ -4211,8 +4293,9 @@ var x = document.getElementById("myAnchor").rel;
 var x = document.getElementById("w3s").target;
 var x = document.getElementById("myAnchor").type;
 
-
-//area
+------------------------------------------------------------------------------
+//area/AREA
+------------------------------------------------------------------------------
 //<area id="venus" shape="circle" coords="124,58,8" alt="A beautiful planet" href="venus.htm">
 var x = document.getElementById("venus").alt;
 var x = document.getElementById("venus").coords;
@@ -4230,16 +4313,18 @@ var x = document.getElementById("venus").hash;//#description
 var x = document.getElementById("venus").target;//_self
 
 
-
-//base object
+------------------------------------------------------------------------------
+//base object/BASE
+------------------------------------------------------------------------------
 //<base id="htmldom" href="http://www.w3schools.com/jsref/">
 //<base id="htmldom" target="_self" href="http://www.w3schools.com/jsref/">
 var x = document.getElementById("htmldom").href;//http://www.w3schools.com/jsref/
 var x = document.getElementById("htmldom").target;//_self
 
 
-
-//iFrame object
+------------------------------------------------------------------------------
+//iFrame object/IFRAMEiframe
+------------------------------------------------------------------------------
 //<iframe id="myframe" src="demo_iframe.htm">
 //<iframe id="myframe" src="/default.asp" height="200" width="250">
 //<iframe id="myframe" src="/default.asp" name="iframe_a"></iframe>
@@ -4252,8 +4337,9 @@ var x = document.getElementById("myframe").src;
 document.getElementById("myframe").src = "http://www.cnn.com";
 
 
-
-//image
+------------------------------------------------------------------------------
+//image/IMAGE
+------------------------------------------------------------------------------
 //<img id="myImg" src="compman.gif" alt="Crazy computerman" width="107" height="98">
 var x = document.getElementById("myImg").alt;//Crazy computerman
 var x = document.getElementById("myImg").height;
@@ -4271,8 +4357,9 @@ var x = document.getElementById("planets").useMap;//#planetmap
 
 
 
-
-//table object
+------------------------------------------------------------------------------
+//table object/TABLE
+------------------------------------------------------------------------------
 /*
 <table id="myTable" style="border: 1px solid black">
 <tr>
@@ -4307,8 +4394,9 @@ function changeContent(id, row, cell, content) {
 
 
 
-
-//event
+------------------------------------------------------------------------------
+//event/EVENT
+------------------------------------------------------------------------------
 When you leave the input field
 <input type="text" id="fname" onblur="myFunction()">
 
@@ -4505,8 +4593,9 @@ button
 //double click
 <p ondblclick="myFunction()">Doubleclick this paragraph to trigger a function.</p>
 
-
+---------------------------------------
 onload
+
 <body onload="myFunction()">
 <img src="w3javascript.gif" onload="loadImage()" width="100" height="132">
 //onerror
@@ -4514,7 +4603,9 @@ onload
 function imgError() {
     alert('The image could not be loaded.');
 }
+---------------------------------------
 onresize
+
 <body onresize="myFunction()">
 
 which key
@@ -4523,8 +4614,9 @@ function whichButton(event) {
     document.getElementById("demo").innerHTML = event.keyCode;
 }
 
-
+---------------------------------------
 mouse position
+
 <p onmousedown="show_coords(event)"><>
 function show_coords(event) {
     document.getElementById("demo").innerHTML =
@@ -4536,8 +4628,9 @@ function coordinates(event) {
     document.getElementById("demo").innerHTML =
     "X = " + event.screenX + "<br>Y = " + event.screenY;
 }
-
+---------------------------------------
 shift key pressed
+
 <body onmousedown="isKeyPressed(event)">
 function isKeyPressed(event) {
     var text = "The shift key was NOT pressed!";
@@ -4546,15 +4639,16 @@ function isKeyPressed(event) {
     }
     document.getElementById("demo").innerHTML = text;
 }
-
+---------------------------------------
 event type
+
 <p onmousedown="getEventType(event)">
 function getEventType(event) {
     document.getElementById("demo").innerHTML = event.type;
 }
 
 
-
+---------------------------------------
 //按钮与新窗口
 <input type="button" value="Open Window" onclick="openWin()">
 function openWin() {
@@ -4565,6 +4659,7 @@ function openWin() {
     window.open("http://www.w3schools.com","_blank","toolbar=yes, location=yes, directories=no, status=no, \
     	menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400");
 }
+---------------------------------------
 //赋值变量
 function openWin() {
     myWindow = window.open("", "", "width=400, height=200");
@@ -4581,7 +4676,7 @@ function focusWin() {
 function closeWin() {
     myWindow.close();
 }
--------------------
+---------------------------------------
 var myWindow;
 function openWin() {
     myWindow = window.open("", "", "width=400 ,height=200");
@@ -4608,7 +4703,7 @@ function checkWin() {
     document.getElementById("msg").innerHTML =
     "myWindow " + msg;
 }
--------------------
+---------------------------------------
 
 //原window显示文字，new window回指
 function openWin() {
@@ -4727,8 +4822,9 @@ function myCounter() {
 <button onClick="myTimer = setInterval(myCounter, 1000)">Start counter!</button>		/
 <button onClick="clearInterval(myTimer)">Stop counter!</button>							/
 
-
-cookie
+---------------------------------------
+cookie/COOKIE
+---------------------------------------
 /*
 <!DOCTYPE html>
 <html>
