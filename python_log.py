@@ -1238,3 +1238,20 @@ print type(s1)
 # <class 'sqlalchemy.orm.session.sessionmaker'>
 # <class 'sqlalchemy.orm.scoping.scoped_session'>
 # <class 'sqlalchemy.orm.session.Session'>
+
+
+
+
+既然@staticmethod和@classmethod都可以直接类名.方法名()来调用，那他们有什么区别呢
+从它们的使用上来看,
+@staticmethod不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样。
+@classmethod也不需要self参数，但第一个参数需要是表示自身类的cls参数。
+如果在@staticmethod中要调用到这个类的一些属性方法，只能直接类名.属性名或类名.方法名。
+而@classmethod因为持有cls参数，可以来调用类的属性，类的方法，实例化对象等，避免硬编码。
+
+
+
+问题can not assign to function call
+user = session.query(User).filter(User.id = user_id)
+解决办法
+user = session.query(User).filter(User.id == user_id)
