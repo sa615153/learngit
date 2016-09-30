@@ -298,3 +298,27 @@ user = session.query(User).filter(User.id == user_id)
 
 
 
+
+| <a href="{{ url_for('logout') }}">Logout</a>
+|<a href="{{ url_for('1') }}">url_for('1')</a>
+结果为：
+<a href="/logout">Logout</a>#
+BuildError: Could not build url for endpoint '1'. Did you mean 'sign_up' instead?
+# @app.route('/logout')
+# @login_required
+# def logout():
+#     logout_user()
+#     return redirect(url_for('index'))
+
+
+jinja
+
+注释
+{# note: disabled template because we no longer use this
+    {% for user in users %}
+        ...
+    {% endfor %}
+#}
+
+从 Jinja 2.2 开始，行注释也可以使用了。例如如果配置
+'##' 为行注释前缀， 行中所有'##' 之后的内容（不包括换行符）会被忽略:

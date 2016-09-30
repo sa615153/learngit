@@ -295,3 +295,6 @@ commit() flushes whatever remaining changes remain to the database, and commits 
 //query
 It features a generative interface whereby successive calls return a new Query object, a copy of the former with additional criteria and options associated with it.
 
+
+//数据库迁移，不用删除表，直接加字段#用sql语句可以做到，改model，改table，法2：
+
