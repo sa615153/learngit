@@ -51,3 +51,160 @@ B ~ E	B元素后面的拥有共同父元素的兄弟元素E
 
 
 
+选取器组
+/* color for headings */
+h1, h2, h3 {color: navy;}
+
+
+
+多属性，分号隔，分号结尾
+.carrot {
+  color: orange;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+
+
+
+p {font: italic 75%/125% "Comic Sans MS", cursive;}
+这条规则定义了字体的几个属性，使整个段落文本都变成斜体。
+文本字体设置为 Comic Sans MS，假如该字体不被浏览器支持则使用默认字体：cursive，逗号隔
+这条规则还把bold和small-caps这些效果给去掉了（设置它们的值为normal）。
+字体大小设置为每个段落父元素字体大小的3/4，行高设置为125%（比常规的间隔稍大一些）。
+
+使用 font-size 属性指定字体的大小。
+使用 line-height 属性指定文本的行间距。
+/*字号 相对的字号
+small,medium和large。你也可以使用相对父元素字号大小的值来设置，比如：smaller,larger,150%或1.5em。
+1“em”等于1个字母“m”的宽度（相对于父元素字号大小）;因此1.5em就是1.5倍的父元素字号大小
+font: 200% serif;
+       也可以指定一个实际的大小，比如14px
+*/
+
+单独的 text-decoration 就可以为文本指定其他风格，比如underline或line-through。你也可以把值设置成none，把这些风格取消掉。
+
+使用font-style: italic;指定文本为斜体;
+
+使用 font-weight: bold;指定文本加粗;
+
+使用 font-variant: small-caps;指定文本为小型大写字母;
+
+如果我们想单独设置某个效果失效，我们可以把其相应的属性设置为normal或inherit.
+
+中文字体
+Windows：font-family:微软雅黑;
+Mac OS：font-family:"Songti SC";
+
+https://www.w3.org/TR/CSS21/fonts.html
+https://www.w3.org/TR/CSS21/text.html
+
+
+
+大范围设置
+对于一个简单的页面，我们可以设置 <body>元素的字体，然后页面中的其他元素继承这个设置。
+body {font: 16px "Comic Sans MS", cursive;}
+
+
+
+------------------------------------
+标签元素前边加文本"Reference: "
+.ref:before {
+  font-weight: bold;
+  color: navy;
+  content: "Reference: ";
+}
+
+加图片
+a.glossary:after {content: " " url("../images/glossary-icon.gif");}
+#sidebar-box {background: url("../images/glossary.jpg") no-repeat;}
+------------------------------------
+
+
+
+
+背景
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/background
+
+背景图默认是 repeat（重复）的，无需明确指出。图片在水平和垂直方向重复，最终呈现出横格纸的效果：
+
+
+
+list
+liststyle属性  https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style
+
+无序  ul
+li.open {list-style: circle;}
+li.closed {list-style: disc;}
+html
+<ul>
+  <li class="open">Lorem ipsum</li>
+  <li class="closed">Dolor sit</li>
+  <li class="closed">Amet consectetuer</li>
+  <li class="open">Magna aliquam</li>
+  <li class="closed">Autem veleum</li>
+</ul>
+
+
+有序  ol
+ol.info {list-style: upper-latin;}  <li> 元素继承了ol的样式：ABCDE
+
+
+
+计数器（more than list）
+h3.numbered {counter-reset: mynum;}
+
+p.numbered:before {
+  content: counter(mynum) ": ";
+  counter-increment: mynum;
+  font-weight: bold;}
+
+
+  h4:before{
+  content:counter(mynum)": ";
+  counter-increment: mynum;
+  }/*still 3 if no counter-increment, 4 if yes whatever the position of it */
+
+  a.numbered:before{
+   counter-increment: mynum;
+  content: counter(mynum)": ";
+  }/* 5 */
+
+
+
+
+  盒模型
+h3 {
+  border-top: 4px solid #7c7; /* 中绿 */
+  background-color: #efe;     /* 浅绿 */
+  color: #050;                /* 深绿 */
+  }
+
+img {border: 2px solid #ccc;}
+
+p.remark {
+  border: 2px solid red;
+  padding: 4px;
+  margin-left: 24px;
+  }
+
+  h3.secondh3 {border-top: 1px solid gray;}
+
+  li {
+  list-style: lower-roman;
+  margin-bottom: 8px;
+  }
+
+  ul.ocean{
+  border: 10px solid lightblue;
+  width:  100px;
+  }
+
+
+
+
+  高阶布局
+  http://learnlayout.com/
+
+  布局
+  
