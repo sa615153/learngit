@@ -4873,3 +4873,18 @@ function checkCookie() {
 
 
 */
+
+event关键字
+<button id="btn" onclick=changeBg(event);>Click Me</button>
+
+onload事件的响应函数
+加载完成后执行
+http://www.w3school.com.cn/jsref/event_onload.asp
+
+
+js执行时机
+script放在head或body里，会未等body加载完毕、DOM生成完毕之前执行，getElementById会失败得null，阻塞后续语句（即使是alert）
+
+解决办法
+1放在〈/body〉后
+2代码加到window.onload=function（）{here}里

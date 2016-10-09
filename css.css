@@ -51,7 +51,7 @@ B ~ E	B元素后面的拥有共同父元素的兄弟元素E
 
 
 
-选取器组
+选取器组 分组，逗号隔
 /* color for headings */
 h1, h2, h3 {color: navy;}
 
@@ -64,6 +64,14 @@ h1, h2, h3 {color: navy;}
   font-style: italic;
 }
 
+
+逐级精确，类似p.class1，空格隔
+#demo-table tbody th:after {
+  content: ":";
+}
+#demo-table tfoot th {
+  color: blue;
+}
 
 
 
