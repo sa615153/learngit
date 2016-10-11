@@ -209,6 +209,14 @@ class LoginForm(Form):
 
 
 
+submit = SubmitField('sign___up')
+字符串参数在 不在html里指定value的情况下，会成为button的内容
+
+问题：form.validate_on_submit false
+分析解决：The problem is with wtf not finding the CSRF Tokens as part of your form data. 
+Add {{ form.hidden_tag() }} or {{ form.csrf_token }} as the top element of your form.
+
+
 
 validate_on_submit 在表单提交请求中被调用，它将会收集所有的数据，对字段进行验证，如果所有的事情都通过的话，它将会返回 True，表示数据都是合法的。
 
@@ -265,10 +273,24 @@ current_user.is_authenticated()
 # to
 current_user.is_authenticated
 
+login_user 必须在session.close()之前，否则会引发数据库问题：
+Instance <User at 0x3847c30> is not bound to a Session; attribute refresh operation cannot proceed
+
+
+
+
+
+
+
+
+
 
 问题：
 database error   ---session.add(user)
 InvalidRequestError: Object '<User at 0x372a650>' is already attached to session '2' (this is '3')
+
+
+
 
 
 
@@ -322,3 +344,50 @@ jinja
 
 从 Jinja 2.2 开始，行注释也可以使用了。例如如果配置
 '##' 为行注释前缀， 行中所有'##' 之后的内容（不包括换行符）会被忽略:
+content 定义两次，base.html layout.html
+TemplateAssertionError: block 'content' defined twice
+
+base.html - layout.html - login2.html
+login2.html 的 content 会覆盖 layout.html 的 content
+解决办法：
+1：base与layout用content，layout与login2用contentlogin：
+
+2：base与layput用“layout”，base与login2用content，login2继承layout，layout继承base
+继承block可跨越，直接由login到base关联
+继承之间不需要有相同的block关联
+
+若base.html有嵌套的block标志，在最底层，被login替换{%- block styles %}{%- endblock styles %}，
+则，被layout.html替换的{% block layoutstyles -%}{%- endblock layoutstyles %}设置将被覆盖
+<head>
+{%- block head %}
+    <title>{% block title %}{{title|default}}{% endblock title %}</title>
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+    {%- block styles %}
+    <!-- Bootstrap -->
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    {%- endblock styles %}
+
+    {% block layoutstyles -%}
+    {%- endblock layoutstyles %}
+
+{%- endblock head %}
+</head>
+
+
+
+
+
+
+
+http://www.cnblogs.com/feeland/p/4640695.html
+css文件寻找问题 user.static
+<link href="{{url_for('user.static',filename='css/lib/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+url_for这里会生成绝对路径，/user/static/css/lib/bootstrap.min.css，需用这个绝对路径
+若用相对路径，可写在网页里：<link href="static/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css">
+相对路径默认在user下寻找
+绝对路径的/为qa_api
+
+
+usr_for找的是def 函数，不是app.route('这个')

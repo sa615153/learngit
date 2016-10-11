@@ -4888,3 +4888,56 @@ script放在head或body里，会未等body加载完毕、DOM生成完毕之前�
 解决办法
 1放在〈/body〉后
 2代码加到window.onload=function（）{here}里
+
+
+--------------------------
+某网页搜索结果：
+将JavaScript标识放置<Head>... </Head>在头部之间，使之在主页和其余部分代码之前预先装载，从而可使代码的功能更强大；
+  比如对*.js文件的提前调用。
+  也就是说把代码放在<head>区在页面载入的时候，就同时载入了代码，你在<body>区调用时就不需要再载入代码了，速度就提高了，
+  这种区别在小程序上是看不出的，当运行很大很复杂的程序时，就可以看出了。
+
+当然也可以将JavaScript标识放置在<Body>... </Body>主体之间以实现某些部分动态地创建文档。
+ 这里比如制作鼠标跟随事件，肯定只有当页面加载后再进行对鼠标坐标的计算。或者是filter滤镜与javascript的联合使用产生的图片淡入淡出效果
+
+
+2：放入html的head,是页面加载前就运行，放入body中，则/*？加载后？*/才运行javascript的代码~~~所以head里面的先执行。
+//放入body中，也不是加载后才运行，是加载body时运行
+3: 客户端脚本一般放在 <head> </head>之间,而且要用 <!--  -->把代码括起来。如果浏览器不支持此脚本，那么浏览器会跳过它，不去执行，也不会提出错误信息/
+------------
+注释符的作用是当浏览器不支持style标签的时候，将style标签里的内容转化成注释，从而防止样式表被当成网页内容显示出来。同样的道理还可以用在script标签里。/
+---------------------------
+某网页搜索结果：
+一般是把自定义函数放在head，调用函数的语句写在body里。
+但这个是没有硬性规定的，随你喜欢，可以全部放在body也可以的。只要注意把函数写在调用语句的前面就行了。
+---------------------------
+这个靠谱些：
+刚好我才做了一个js的简单例子，可以给你说一下我的想法，看着下面的代码：
+<script type="text/javascript">
+
+var DomHelp = {
+CreateTextElement: function (element, text) {
+    var tempObj = document.createElement(element);
+    tempObj.appendChild(document.createTextNode(text));
+    return tempObj;
+    }
+}//object
+
+var h1 = DomHelp.CreateTextElement("h1", "hello javascript!"); document.body.appendChild(h1);
+</script>
+
+这是一个创建body元素的程序，这段代码如果放在head里面，程序执行会报错（最后一句）：不能用空对象调用appendChild；但是放在body中，就能成功执行。
+也就是说，一般的JS代码可以写在head中，但是，如果需要在页面加载了body元素后再执行的操作，就要写在body中，就像这个程序一样，在没有加载除body之前，JS不能执行。/
+---------------------------
+这个也靠谱些，解决方案2
+如果写在head则需要加onload事件因为head是先载入浏览器执行的，如果body部分还没载入完成javascript就执行的话很多body中的id javascript将访问不到，
+所以要加onload等页面载入完成后执行，我一般放在body末尾。反正放在head或body各有优缺点
+---------------------------
+通常都是写在head里的。
+写在body里面的一半是页面加载的时候需要运行的js。
+
+---------------------------
+w3Schools  
+It is a good idea to place scripts at the bottom of the <body> element.
+This can improve page load, because script compilation can slow down the display.
+
