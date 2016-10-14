@@ -682,6 +682,7 @@ True
 True
 
 
+/////////获得对象的所有属性和方法
 使用dir()
 
 如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法：
@@ -704,7 +705,8 @@ True
 >>> obj.y # 获取属性'y'
 19
 
-获得对象的方法：
+//获得对象的方法：或属性
+//测试对象信息
 
 >>> hasattr(obj, 'power') # 有属性'power'吗？
 True
@@ -715,6 +717,31 @@ True
 <bound method MyObject.power of <__main__.MyObject object at 0x108ca35d0>>
 >>> fn() # 调用fn()与调用obj.power()是一样的
 81
+
+可以传入一个default参数，如果属性不存在，就返回默认值：
+
+>>> getattr(obj, 'z', 404) # 获取属性'z'，如果不存在，返回默认值404
+404
+
+
+
+/////@property
+class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2014 - self._birth
+上面的birth是可读写属性，而age就是一个只读属性，因为age可以根据birth和当前时间计算出来。
+
+
 
 
 __slot__
@@ -742,11 +769,78 @@ Michael
 25
 
 
-给类动态绑定方法
+
+
+
+
+
+
+
+///动态绑定
+
+//////////给类动态绑定方法：class Student
+
+1MethodType
 >>> def set_score(self, score):
 ...     self.score = score
 ...
 >>> Student.set_score = MethodType(set_score, None, Student)
+
+2直写
+直接类名.字段 = method
+class A（object）:
+         pass
+#要给A加一个属性score,值为60
+A.score=60
+这样一来，A的所有实例及A子类的所有实例都有属性score且值为60
+这个score可以等于一个方法，比如现在有个方法fuc
+  #注意，如果要让这个方法可以被额外赋予到类上，方法的写法必须跟类里面的方法的写法一 致，即第一个参数为self
+def fuc(self,arg): 
+      print arg
+#给类A增加方法fuc
+A.score=fuc
+
+3setattr
+setattr( A, 'd', 1)
+或者
+setattr( a1.__class__, 'd', 1)
+
+//////////给实例绑定
+1MethodType
+
+>>> def set_age(self, age): # 定义一个函数作为实例方法
+...     self.age = age
+...
+>>> from types import MethodType
+>>> s.set_age = MethodType(set_age, s, Student) # 给实例绑定一个方法
+>>> s.set_age(25) # 调用实例方法
+>>> s.age # 测试结果25
+
+2 直写
+a1 = A()
+a1.c = 1
+这里我们定义了一个类A，还有一个实例a1。a1.c = 1 只是增加实例的属性而不是增加类的属性。
+
+3setattr(obj, 'y', 19)
+setattr似乎只能绑定属性，无法绑定方法
+>>> setattr(obj, 'y', 19) # 设置一个属性'y'
+>>> hasattr(obj, 'y') # 有属性'y'吗？
+True
+>>> getattr(obj, 'y') # 获取属性'y'
+19
+>>> obj.y # 获取属性'y'
+19
+
+
+
+
+
+
+
+
+
+
+
 
 
 为了达到限制的目的，Python允许在定义class的时候，定义一个特殊的__slots__变量，来限制该class能添加的属性：
@@ -763,6 +857,10 @@ Michael
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: 'Student' object has no attribute 'score'
+
+
+
+
 
 
 
@@ -1255,3 +1353,33 @@ print type(s1)
 user = session.query(User).filter(User.id = user_id)
 解决办法
 user = session.query(User).filter(User.id == user_id)
+
+
+使用wtf form时
+class userform(form):
+    name1 = StringField()
+
+user = userform()
+user.name2 = StringField()
+此时的name2不具有name1的某些属性，属于unbound，不可转化为<imput>,name1可以
+
+在对象上动态添加的属性，不具备某些原生的类的属性的特性
+需在类上添加属性，然后再实例化
+
+
+names = session.query()"alice,bob"
+name = name[0]"alice"
+userform.name = scjb
+不会动态加userform.alice
+
+
+
+
+动态tmp
+-----------------
+class A（object）:
+         pass
+#要给A加一个属性score,值为60
+A.score=60
+这样一来，A的所有实例及A子类的所有实例都有属性score且值为60
+

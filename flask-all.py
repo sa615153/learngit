@@ -47,7 +47,7 @@ def show_post(post_id):
     return 'Post %d' % post_id
 
 
-
+参数
 a number of keyword arguments, each corresponding to the variable part of the URL rule. 
 Unknown variable parts are appended to the URL as query parameters. Here are some examples:
 //url study
@@ -58,10 +58,10 @@ Unknown variable parts are appended to the URL as query parameters. Here are som
 >>> @app.route('/')
 ... def index(): pass
 ...
->>> @app.route('/login')
+>>> @app.route('/login')#没有/<>,就会变成？
 ... def login(): pass
 ...
->>> @app.route('/user/<username>')
+>>> @app.route('/user/<username>')#有/<>,就会变成/user/username
 ... def profile(username): pass
 ...
 >>> with app.test_request_context():
@@ -304,6 +304,21 @@ def users(user_id):
 -------------------------------
 
 
+////////////////forms:
+input2 = StringField('input2dif', validators=[DataRequired()])
+->
+<input id="input2" name="input2" type="text" value=""><br>
+
+
+<form action="/user/test">
+action要绝对路径，不管蓝图
+
+form内没有name属性的input不会出现在fiddler监控的webform里，即submit只会提交有name的input
+form1.validate_on_submit和form2.validate_on_submit各司其职，且任一可使程序走进if，可获得the other frorm数据
+
+
+
+
 
 so far 两种方法获取前端数据
 1  from flask import request
@@ -391,3 +406,14 @@ url_for这里会生成绝对路径，/user/static/css/lib/bootstrap.min.css，�
 
 
 usr_for找的是def 函数，不是app.route('这个')
+
+
+
+
+bugs
+
+form_validate_onsubmit false
+解决办法：
+<form>的第一个元素写：
+<!-- solve validate_on_submit false -->
+        {{ form.hidden_tag() }}
