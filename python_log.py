@@ -832,7 +832,7 @@ True
 19
 
 
-
+由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性
 
 
 
@@ -866,6 +866,7 @@ AttributeError: 'Student' object has no attribute 'score'
 
 
 
+__iter__ 
 
 class Fib(object):
     def __init__(self):
@@ -881,9 +882,9 @@ class Fib(object):
         return self.a # 返回下一个值
 
 
+__getitem__
 
 要表现得像list那样按照下标取出元素，需要实现__getitem__()方法：
-
 class Fib(object):
     def __getitem__(self, n):
         a, b = 1, 1
@@ -969,7 +970,7 @@ Python的os模块封装了操作系统的目录和文件操作，要注意这些
 
 
 
-//序列化与反序列化
+//序列化与反序列化json
 d = dict(name='Bob', age=20, score=88)
 import json
 json_str=json.dumps(d)
@@ -999,7 +1000,7 @@ print(json.dumps(s, default=student2dict))
 
 
 
-metaclass允许你创建类或者修改类
+
 
 //or
 print(json.dumps(s, default=lambda obj: obj.__dict__))
@@ -1173,21 +1174,7 @@ Model从dict继承，所以具备所有dict的功能，同时又实现了特殊�
 123
 
 
-// metaclass的相关知识
-1. what is metaclass?
-1.1 在wiki上面，metaclass是这样定义的：In object-oriented programming, 
-a metaclass is a class whose instances are classes. 
-Just as an ordinary class defines the behavior of certain objects, 
-a metaclass defines the behavior of certain classes and their instances.
- 
-也就是说metaclass的实例化结果是类，而class实例化的结果是instance。我是这么理解的：
-metaclass是类似创建类的模板，所有的类都是通过他来create的(调用__new__)，这使得你可以自由的控制
-创建类的那个过程，实现你所需要的功能。
 
-如何使用metaclass
-2.1 用类的形式
-2.1.1 类继承于type, 例如： class Meta(type):pass
-2.1.2 将需要使用metaclass来构建class的类的__metaclass__属性（不需要显示声明，直接有的了）赋值为Meta（继承于type的类）
 
 
 
@@ -1339,7 +1326,7 @@ print type(s1)
 
 
 
-
+//静态方法
 既然@staticmethod和@classmethod都可以直接类名.方法名()来调用，那他们有什么区别呢
 从它们的使用上来看,
 @staticmethod不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样。
@@ -1355,6 +1342,8 @@ user = session.query(User).filter(User.id = user_id)
 user = session.query(User).filter(User.id == user_id)
 
 
+
+//关于实例动态加载的缺点
 使用wtf form时
 class userform(form):
     name1 = StringField()
@@ -1375,11 +1364,24 @@ userform.name = scjb
 
 
 
-动态tmp
------------------
-class A（object）:
-         pass
-#要给A加一个属性score,值为60
-A.score=60
-这样一来，A的所有实例及A子类的所有实例都有属性score且值为60
 
+
+
+////元类与动态类，动态加载属性已在前边说明
+
+// metaclass的相关知识
+metaclass允许你创建类或者修改类
+1. what is metaclass?
+1.1 在wiki上面，metaclass是这样定义的：In object-oriented programming, 
+a metaclass is a class whose instances are classes. 
+Just as an ordinary class defines the behavior of certain objects, 
+a metaclass defines the behavior of certain classes and their instances.
+ 
+也就是说metaclass的实例化结果是类，而class实例化的结果是instance。我是这么理解的：
+metaclass是类似创建类的模板，所有的类都是通过他来create的(调用__new__)，这使得你可以自由的控制
+创建类的那个过程，实现你所需要的功能。
+
+如何使用metaclass
+2.1 用类的形式
+2.1.1 类继承于type, 例如： class Meta(type):pass
+2.1.2 将需要使用metaclass来构建class的类的__metaclass__属性（不需要显示声明，直接有的了）赋值为Meta（继承于type的类）

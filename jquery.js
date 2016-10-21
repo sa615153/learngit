@@ -1,3 +1,10 @@
+ajax
+http://www.imooc.com/video/6161 
+http://www.imooc.com/learn/250 
+http://blog.csdn.net/witsmakemen/article/details/20999685 
+http://docs.jinkan.org/docs/flask/patterns/jquery.html 
+
+
 $( function() {
 
     $('a#calculate').bind('click', function() {
