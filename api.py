@@ -171,7 +171,11 @@ class Todo(Resource):
     @marshal_with(resource_fields)
     def get(self, **kwargs):
         return TodoDao(todo_id='my_todo', task='Remember the milk')
-The above example takes a python object and prepares it to be serialized. The marshal_with() decorator will apply the transformation described by resource_fields. The only field extracted from the object is task. The fields.Url field is a special field that takes an endpoint name and generates a URL for that endpoint in the response. Many of the field types you need are already included. See the fields guide for a complete list.
+The above example takes a python object and prepares it to be serialized. 
+The marshal_with() decorator will apply the transformation described by resource_fields.
+The only field extracted from the object is task. 
+The fields.Url field is a special field that takes an endpoint name and generates a URL for that endpoint in the response. 
+Many of the field types you need are already included. See the fields guide for a complete list.
 
 
 
@@ -227,7 +231,7 @@ fields = {
     'status': UnreadItem(attribute='flags'),
 }
 
-restful api 
+restful api //Renaming Attributes field
 -----------------------------------------------------------------
 
 //Renaming Attributes
@@ -237,12 +241,14 @@ fields = {
     'name': fields.String(attribute='private_name'),
     'address': fields.String,
 }
+
 A lambda (or any callable) can also be specified as the attribute
 
 fields = {
     'name': fields.String(attribute=lambda x: x._private_name),
     'address': fields.String,
 }
+
 Nested properties can also be accessed with attribute
 
 fields = {
@@ -260,7 +266,9 @@ fields = {
 }
 
 //multivalue              “attribute=”    是与obj对接的
-This example assumes that bit 1 in the flags attribute signifies a “Normal” or “Urgent” item, and bit 2 signifies “Read” or “Unread”. These items might be easy to store in a bitfield, but for a human readable output it’s nice to convert them to seperate string fields.
+This example assumes that bit 1 in the flags attribute signifies a “Normal” or “Urgent” item, 
+and bit 2 signifies “Read” or “Unread”. These items might be easy to store in a bitfield, 
+but for a human readable output it’s nice to convert them to seperate string fields.
 
 class UrgentItem(fields.Raw):
     def format(self, value):
@@ -278,7 +286,7 @@ fields = {
 
 
 如果fields里的值与obj.Attributes相同，则辨识出对应值被fields.String输出
-如果不同，则为新加的数据，上例，下例  
+如果不同，则为新加的数据，上例，下例 # 'uri': fields.Url('todo_resource'),
 
 This is also a good example of how to add data to your response that’s not actually present on your data object.:
 
@@ -311,7 +319,8 @@ You can have a flat structure that marshal() will transform to a nested structur
 >>> json.dumps(marshal(data, resource_fields))
 '{"name": "bob", "address": {"line 1": "123 fake street", "line 2": "", "state": "NY", "zip": "10468", "city": "New York"}}'
 Note
-The address field doesn’t actually exist on the data object, but any of the sub-fields can access attributes directly from the object as if they were not nested.
+The address field doesn’t actually exist on the data object, 
+but any of the sub-fields can access attributes directly from the object as if they were not nested.
 
 
 
