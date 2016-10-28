@@ -304,7 +304,7 @@ def users(user_id):
 -------------------------------
 
 
-////////////////forms:
+////////////////forms:FORM
 input2 = StringField('input2dif', validators=[DataRequired()])
 ->
 <input id="input2" name="input2" type="text" value=""><br>
@@ -417,3 +417,13 @@ form_validate_onsubmit false
 <form>的第一个元素写：
 <!-- solve validate_on_submit false -->
         {{ form.hidden_tag() }}
+
+
+
+
+
+
+实践
+    def post(self):
+        jsonstr = request.get_data()
+        match_lists = json.loads(jsonstr)

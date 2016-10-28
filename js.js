@@ -4956,3 +4956,100 @@ w3Schools
 It is a good idea to place scripts at the bottom of the <body> element.
 This can improve page load, because script compilation can slow down the display.
 
+
+
+
+
+
+
+
+
+
+
+
+实践
+单双引号
+<button id="addsub" onclick='document.getElementById("addpanel").style.display="block"'>add subtasks</button>                        /
+
+
+js 发json
+//判断checkbox是否被选中
+
+function addsubtasks(){
+    var track = document.getElementById("track").innerHTML;
+    var ajaxRequest;
+
+    if (window.XMLHttpRequest)
+     {// code for IE7+, Firefox, Chrome, Opera, Safari
+        ajaxRequest=new XMLHttpRequest();
+     }
+    else
+     {// code for IE6, IE5
+       ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+    remain_sub_array = document.getElementsByName("addsubcheckbox");
+    post_sub_array = [];
+    for(i=0;i<remain_sub_array.length;i++)
+    {
+        if(remain_sub_array[i].checked == true)
+        {
+        	post_sub_array.push(remain_sub_array[i].value)
+        }
+    }
+
+    if (post_sub_array.length==0)
+    {
+    	alert("pls choose one subtask");
+    	return;
+    }
+    else
+    {
+    	ajaxRequest.open("POST", "/user/addsubtasks", true);
+    	ajaxRequest.setRequestHeader('content-type', 'application/json');
+
+    	ajaxRequest.onreadystatechange = function() {
+	        if (ajaxRequest.readyState == 4) {
+	            //根据服务器的响应内容格式处理响应结果
+	            if(ajaxRequest.getResponseHeader('content-type')==='application/json'){
+		        	var result = JSON.parse(ajaxRequest.responseText);
+
+	            }else{
+	            	var result = ajaxRequest.responseText;
+	            }
+	            alert(result);
+	        }
+	    }
+
+	    var obj = {track:track}
+	    obj.new_sub_list=post_sub_array
+
+	    ajaxRequest.send(JSON.stringify(obj));
+	    alert(JSON.stringify(obj));
+
+	    return;
+    }
+}
+
+
+
+server端：
+@user.route('/addsubtasks', methods=['GET', 'POST'])
+def addsubtasks():
+    jsonstr = request.get_data()
+    obj = json.loads(jsonstr)
+    tracknumber = obj["track"]
+    sub_name_lists = obj["new_sub_list"]
+
+
+    print tracknumber
+    print sub_name_lists
+    return "ok"
+
+
+
+form里的button需制定type，才不会自动提交
+<button onclick="selectAll()" type="button" >select all</button>
+
+getElementsByClassName
+subElements = document.getElementsByClassName("subtaskcheckbox");

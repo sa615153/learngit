@@ -1439,3 +1439,52 @@ dict2 -- 这是被添加dict到的词典
 
 #__doc__属性
 print type.__doc__
+
+
+error：RuntimeError: dictionary changed size during iteration
+
+for aname, avalue in attrs.iteritems():
+    if aname == "subdict":  # value is a dict{checkgui:checkbox}
+        attrs.update(avalue)
+
+
+'builtin_function_or_method' object has no attribute '__getitem__'
+attrs.pop['subdict'] -> attrs.pop('subdict')
+
+
+//遍历属性
+
+假设你有一个类如
+>>> class Cls(object):
+...     foo = 1
+...     bar = 'hello'
+...     def func(self):
+...         return 'call me'
+...
+>>> obj = Cls()
+
+调用Dir的对象返回给您该对象的所有属性，包括Python的特殊属性。虽然有些对象的属性是可赎回的，
+
+等方法。
+>>> dir(obj)
+['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'bar', 'foo', 'func']
+
+
+你总是可以过滤出特别的方法使用的列表。
+>>> [a for a in dir(obj) if not a.startswith('__')]
+['bar', 'foo', 'func']
+
+或如果你喜欢
+
+地图/过滤器。
+>>> filter(lambda a: not a.startswith('__'), dir(obj))
+['bar', 'foo', 'func']
+
+
+如果你想过滤的方法，你可以使用内置的可作为一个检查。
+>>> [a for a in dir(obj) if not a.startswith('__') and not callable(getattr(obj,a))]
+['bar', 'foo']
+
+你也可以检查你的类及其亲本利用之间的差异。
+>>> set(dir(Cls)) - set(dir(object))
+set(['__module__', 'bar', 'func', '__dict__', 'foo', '__weakref__'])
