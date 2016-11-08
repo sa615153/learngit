@@ -1,3 +1,8 @@
+调试问题：
+1缺分号
+2开启两个run
+
+
 https://www.zhihu.com/question/20498721  //push to kindle
 好习惯，脚本开始处声明变量
 
@@ -5049,7 +5054,169 @@ def addsubtasks():
 
 
 form里的button需制定type，才不会自动提交
-<button onclick="selectAll()" type="button" >select all</button>
+<button onclick="selectAll()" type="button" >select all</button>             /
 
 getElementsByClassName
 subElements = document.getElementsByClassName("subtaskcheckbox");
+
+
+
+
+js发json2
+
+server返回json
+
+js更新数据
+
+function test(){
+  var track = document.getElementById("track").innerHTML;
+  var ajaxRequest;
+
+  if (window.XMLHttpRequest)
+     {// code for IE7+, Firefox, Chrome, Opera, Safari
+        ajaxRequest=new XMLHttpRequest();
+     }
+    else
+     {// code for IE6, IE5
+       ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+  ajaxRequest.open("POST", "/user/refresh_subtasks", true);
+  ajaxRequest.setRequestHeader('content-type', 'application/json');
+
+  ajaxRequest.onreadystatechange = function() {
+    if (ajaxRequest.readyState == 4) {
+      //根据服务器的响应内容格式处理响应结果
+      var subs = JSON.parse(ajaxRequest.responseText);
+
+      for(i=0;i<subs.length;i++)
+      {
+
+          //span
+          var logo_ele = document.getElementById(subs[i].name).cells[0].firstChild;
+          //a
+          var href_ele = document.getElementById(subs[i].name).cells[1].firstChild;
+          //tr
+          row_ele = document.getElementById(subs[i].name);
+
+
+          // add link
+          if(subs[i].result_link != null){
+            href_ele.setAttribute("href",subs[i].result_link);
+            href_ele.title = "link";
+          }
+
+          // change logo by status
+          if(subs[i].status == 0){
+            logo_ele.className="glyphicon glyphicon-headphones";
+            logo_ele.title = "Waiting";
+          }else if(subs[i].status == 1){
+            logo_ele.className="glyphicon glyphicon-flash blink";
+            logo_ele.title = "Running";
+          }else if(subs[i].status == 2){
+              //change status by result
+              if(subs[i].result == "SUCCESS")
+              {
+                //document.getElementById(subs[i].name).cells[0].getElementsByTagName("span")[0].className="glyphicon glyphicon-ok";  // works
+                logo_ele.className="glyphicon glyphicon-ok";  // also works
+                logo_ele.title = "Success"
+
+                //alert(str);
+              }else if(subs[i].result == "FAILURE"){
+                row_ele.className = "danger";
+                logo_ele.className="glyphicon glyphicon-remove";
+                logo_ele.title = "Failed";
+              }  //end of result if
+
+          }else if(subs[i].status ==3){
+            logo_ele.className = "glyphicon glyphicon-ban-circle";
+            logo_ele.title = "Aborted";
+          }  // end of status condition if
+
+      }  // end of for
+
+
+    }  // end of if (ajaxRequest.readyState == 4)
+
+  }  // end of ajaxRequest.onreadystatechange = function
+
+  var obj = {track:track};
+  ajaxRequest.send(JSON.stringify(obj));
+  return;
+
+} //end of test
+
+
+var myVar = setInterval(test, 10000);
+
+function myTimer() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+
+
+
+server端：
+@user.route('/refresh_subtasks', methods=['GET', 'POST'])
+def refresh_subtasks():
+    jsonstr = request.get_data()
+    obj = json.loads(jsonstr)
+    tracknumber = obj["track"]
+    print tracknumber
+
+    session = Session()
+    task = session.query(MajorTask).get(tracknumber)
+    subs = task.subtasks[:]
+
+    def sub2dict(sub):
+        return {
+            'major_task_track_number': sub.major_task_track_number,
+            'name': sub.name,
+            'status': sub.status,
+            'benchmark':sub.benchmark,
+            'running_machine': sub.running_machine,
+            'assistant_git_dir': sub.assistant_git_dir,
+            'result': sub.result,
+            'hash_value': sub.hash_value,
+            'build_number': sub.build_number,
+            'assign_time': sub.assign_time,
+            'result_link': sub.result_link,
+            'id': sub.id
+        }
+    # def sub2dict2(sub):
+    #     pr = {}
+    #     for name in dir(sub):
+    #         value = getattr(sub, name)
+    #         if not name.startswith('__') and not callable(value):
+    #             pr[name] = value
+    #     return pr
+
+    dict_subs = map(sub2dict, subs)
+    return json.dumps(dict_subs)
+
+
+//例子总结
+flask return有自动json.dumps的功能
+
+js判空：
+if (variable == null)
+if(subs[i].result_link != null)//?
+
+document.getElementById("myId").setAttribute("href","www.jbxue.com");
+document.getElementById("myId").href = "www.jbxue.com";
+js各种属性，dom
+http://www.w3school.com.cn/jsref/dom_obj_all.asp
+//class name
+object.className=classname
+
+
+document.getElementById(subs[i].name).cells[0].getElementsByTagName("span")[0].className="glyphicon glyphicon-ok";  // works
+document.getElementById(subs[i].name).cells[0].firstChild.className="glyphicon glyphicon-ok";  // also works
+//解释
+1getElementById("tb").rows[0].cells[0];
+2getElement 在点前元素内部
+//var a = docuemnt.getElementById("dom").getElementsByTagName_r("div")
+3firstchild 等 http://www.w3school.com.cn/jsref/dom_obj_all.asp
+
+
+

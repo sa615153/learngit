@@ -970,7 +970,7 @@ Python的os模块封装了操作系统的目录和文件操作，要注意这些
 
 
 
-//序列化与反序列化json
+//序列化与反序列化jsonJSON
 d = dict(name='Bob', age=20, score=88)
 import json
 json_str=json.dumps(d)
@@ -1488,3 +1488,22 @@ attrs.pop['subdict'] -> attrs.pop('subdict')
 你也可以检查你的类及其亲本利用之间的差异。
 >>> set(dir(Cls)) - set(dir(object))
 set(['__module__', 'bar', 'func', '__dict__', 'foo', '__weakref__'])
+
+
+
+//python //groupby
+
+subtasks=http_get_from_server(URL_RUNNING_SUBS)
+subtasks = sorted(subtasks,key=lambda x: x['sub_name'] )
+for k, group in groupby(subtasks, lambda x: x['sub_name']):
+    name_subs[k]=list(group)
+
+
+//os 读git comment
+
+git_path = r'C:\Users\ypang3\Documents\Work\test-service\1026\AutoTest'
+os.path.exists(git_path):
+retval = os.getcwd()
+os.chdir(git_path)
+log = os.popen('git log --pretty=format:"%an,%h,%cr,%cd,%s" -1').read()
+os.chdir(retval)
