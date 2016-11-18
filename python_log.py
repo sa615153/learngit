@@ -1493,10 +1493,14 @@ set(['__module__', 'bar', 'func', '__dict__', 'foo', '__weakref__'])
 
 //python //groupby
 
+
+
+
 subtasks=http_get_from_server(URL_RUNNING_SUBS)
 subtasks = sorted(subtasks,key=lambda x: x['sub_name'] )
 for k, group in groupby(subtasks, lambda x: x['sub_name']):
     name_subs[k]=list(group)
+
 
 
 //os 读git comment

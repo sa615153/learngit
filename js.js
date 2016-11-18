@@ -176,7 +176,7 @@ Primitive values, like "John Doe", cannot have properties or methods (because th
 JavaScript treats primitive values as objects when executing methods and properties.
 
 
-
+str.length
 
 var str = "Please locate where 'locate' occurs!";
 var pos = str.indexOf("locate");
