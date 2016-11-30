@@ -9,3 +9,5 @@ alter table prototype1.machine  add label varchar(50) NOT NULL DEFAULT '0';
 ALTER TABLE prototype1.major_task  CHANGE task_name task_name varchar(100);
 
 alter table machine rename machines;
+
+mysqldump -h163.184.167.19 -uroot -pStereo888 --opt --compress test_service --skip-lock-tables | mysql -h localhost -uroot -ppassword test_service
