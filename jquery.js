@@ -23,31 +23,160 @@ $( function() {
 
 
 
+//获取元素对象，在jquery里得用get(0),或[0]，，，，get()获取整个数组
+var z = $('#jq').get(0);
+    alert("1");
+    alert(z.tagName);
+//tagName == js nodeName
+var z_js = document.getElementById("jq");
+alert(z_js.nodeName);
+
+
+var x = $('#ideas_lib_calc').find('td').eq(4).find('button').get(0);
+alert(x.innerHTML);
+// Re-run
+
+var x = $('#ideas_lib_calc').find('td').eq(4).find('button').eq(0);
+alert(x.innerHTML);
+//undefined
+
+var x = $('#ideas_lib_calc').find('td').eq(4).find('button').eq(0);
+alert(x.html());
+// Re-run
 
 
 
 
+HTML onclick 事件属性
+
+解除html里onclick事件绑定，以下三种皆可用
+$('#bt').removeAttr("onclick")；
+
+$("#bt").prop("onclick",null).off("click");
+
+$("#bt").attr('onclick','').unbind('click');
 
 
 
+百度静态资源库：
+http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js
 
 
 
+jquery.ajax
+
+当ajax的data数据传入对象{track:IDEAS20161209132102-jpang3-test}时，将转化为form-data，在chrome中，network->左侧连接->headers->Form Data,   fiddler:Raw:track=IDEAS20161209132102-jpang3-test,JSON:JSON=track，WebForms   track  IDEAS20161209132102-jpang3-test
+python端 jsonstr = request.get_data() obj = json.loads(jsonstr)"No JSON object could be decoded"失效
+
+
+以前的js ajax，send函数：var obj = {track:track};ajaxRequest.send(JSON.stringify(obj));,,在chrome中network->左侧连接->headers->Request Payload,  fiddler:Raw:{"track":"IDEAS20161209132102-jpang3-test"},JSON:JSON track=IDEAS20161209132102-jpang3-test
+
+http://www.jianshu.com/p/4350065bdffe
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+前端的数据发送与接收
+1. 提交表单数据
+# GET请求
+
+var data = {
+    "name": "test",
+    "age": 1
+};
+$.ajax({
+    type: 'GET',
+    url: /your/url/,
+    data: data, # 最终会被转化为查询字符串跟在url后面： /your/url/?name=test&age=1
+    dataType: 'json', # 注意：这里是指希望服务端返回json格式的数据
+    success: function(data) { # 这里的data就是json格式的数据
+    },
+    error: function(xhr, type) {
+    }
+});
+# POST请求
+
+var data = {}
+# 如果页面并没有表单，只是input框，请求也只是发送这些值，那么可以直接获取放到data中
+data['name'] = $('#name').val()
+
+# 如果页面有表单，那么可以利用jquery的serialize()方法获取表单的全部数据
+data = $('#form1').serialize();
+
+$.ajax({
+    type: 'POST',
+    url: /your/url/,
+    data: data,
+    dataType: 'json', # 注意：这里是指希望服务端返回json格式的数据
+    success: function(data) { # 这里的data就是json格式的数据
+    },
+    error: function(xhr, type) {
+    }
+});
+注意：
+A）参数dataType：期望的服务器响应的数据类型，可以是null, xml, script, json
+B）请求头中的Content-Tpye默认是Content-Type:application/x-www-form-urlencoded，所以参数会被编码为 name=xx&age=1 这种格式，提交到后端，后端会当作表单数据处理
+2. 提交JSON数据
+如果要给后端传递json数据，就需要增加content-type参数，告诉后端，传递过来的数据格式，并且需要将data转为字符串进行传递。实际上，服务端接收到后，发现是json格式，做的操作就是将字符串转为json对象。
+另外，不转为字符串，即使加了content-type的参数，也默认会转成 name=xx&age=1，使后端无法获取正确的json
+
+# POST一个json数据
+
+var data = {
+    “name”: "test",
+    "age", 1
+}
+$.ajax({
+    type: 'POST',
+    url: /your/url/,
+    data: JSON.stringify(data), # 转化为字符串
+    contentType: 'application/json; charset=UTF-8',
+    dataType: 'json', # 注意：这里是指希望服务端返回json格式的数据
+    success: function(data) { # 这里的data就是json格式的数据
+    },
+    error: function(xhr, type) {
+    }
+});
+后端的数据接收与返回
+1. 接收GET请求数据
+name = request.args.get('name', '')
+age = int(request.args.get('age', '0'))
+2. 接收POST请求数据
+接收表单数据
+
+name = request.form.get('name', '')
+age = int(request.form.get('age', '0'))
+接收Json数据
+
+data = request.get_json()
+
+get_json的源码.png
+另外，如果前端提交的数据格式不能被识别，可以用request.get_data()接收数据。
+微信公众号后台接收微信推送的xml格式的消息体，就可以用request.get_data()来接收
+3. 响应请求
+Flask可以非常方便的返回json数据
+
+from Flask import jsonify
+
+return jsonify({'ok': True})
+
+jsonify源码
+
+看一下源码就可以知道，jsonify就是帮我们做了点添加mimetype这样的杂事，所以如果不嫌麻烦和难看，你也可以这样写
+
+# 太丑了，还是别这么干了
+return Response(data=json.dumps({'ok': True}), mimetype='application/json')
+
+文／乐猿（简书作者）
+原文链接：http://www.jianshu.com/p/4350065bdffe
+著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-
-
-
-
-
-
+没有到success函数却到error函数的原因：
+没有严格的返回json数据，字符串不行，更多内容：
+https://my.oschina.net/adwangxiao/blog/78509
 
 
 

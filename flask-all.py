@@ -418,6 +418,25 @@ form_validate_onsubmit false
 <!-- solve validate_on_submit false -->
         {{ form.hidden_tag() }}
 
+js:alert("a is "+typeof a+" b is "+typeof b+" c is " typeof c);少个+会使整个函数不存在
+
+mysql
+window不区分大小写
+linux区分
+相互拷贝时，有可能出现差别
+程序里是大写，linux里mysql是小写，出问题
+程序里是大写，windows里mysql是小写，没问题
+
+windows与linux路径格式
+在windows里map的位置，windows运行的程序访问要用windows格式
+linux里的相同位置，linux运行的程序要用windows格式
+
+{"track":"IDEAS20161209132102-jpang3-test"} postman格式-引号
+
+
+
+
+
 
 
 

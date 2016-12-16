@@ -5220,3 +5220,155 @@ document.getElementById(subs[i].name).cells[0].firstChild.className="glyphicon g
 
 
 
+
+//for 循环之间的影响
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 onclick="func2()">Click on this text!</h1>
+
+</body>
+
+
+<script>
+function func2(){
+alert(1);
+  var i = 0;
+  for(i=0;i<3;i++){
+      var a,b,c;
+      if(i==0){
+        alert("i=0");
+        a=1;
+        b=2;
+        c=3;
+       }else if(i==1){
+        alert("i=1");
+        a=1;
+        b=2;
+        }
+
+        alert("a is "+typeof a + " b is "+typeof b+ " c is "+ typeof c);
+
+    }
+}
+</script>
+</html>
+
+
++ var 一样
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 onclick="func2()">Click on this text!</h1>
+
+</body>
+
+
+<script>
+function func2(){
+alert(1);
+  var i = 0;
+  for(i=0;i<3;i++){
+      var a,b,c;
+      if(i==0){
+        alert("i=0");
+        var a=1;
+        var b=2;
+        var c=3;
+       }else if(i==1){
+        alert("i=1");
+        var a=1;
+        var b=2;
+        }
+
+        alert("a is "+typeof a + " b is "+typeof b+ " c is "+ typeof c);
+
+    }
+}
+</script>
+</html>
+
+
+
+解决办法
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 onclick="func2()">Click on this text!</h1>
+
+</body>
+
+
+<script>
+function func2(){
+alert(1);
+  var i = 0;
+  for(i=0;i<3;i++){
+      var a,b,c;
+      if(i==0||i==2){
+        alert("i=0 || 2");
+        a=1;
+        b=2;
+        c=3;
+       }else if(i==1){
+        alert("i=1");
+        a=1;
+        b=2;
+        c = "undefined"
+        
+        }
+
+        alert("a is "+typeof a + " b is "+typeof b+ " c is "+ typeof c);
+
+    }
+}
+</script>
+</html>
+
+
+
+
+
+JSON.parse(ajaxRequest.responseText)即使是字符串也要加这句话
+
+
+
+td里写div用$()获取不到，在chrome的F12里也显示不出来
+
+
+
+logo_ele = document.getElementById(subs[i].name).cells[0].firstChild;//文本节点或者空白节点会被获取
+
+logo_ele = document.getElementById(subs[i].name).cells[0].children[0];//只获取文档元素节点
+logo_ele = document.getElementById(subs[i].name).cells[0].firstElementChild;//只获取文档元素节点
+
+
+
+
+checked="不管什么都是会选中"，这里的checked是attribute，html里只要有了checked就会选中。
+而js控制选中的checked不是attribute(string)，而是properties(bool)。
+这两个还是有区别的,这在jquery1.6+里已经很好诠释了。
+非IE测试：
+<input type="checkbox" id="check" checked="checked" />
+<script>
+var check = document.getElementById("check");
+alert(check.checked + "," + check.getAttribute("checked"));
+check.checked = !check.checked;
+alert(check.checked + "," + check.getAttribute("checked"));
+</script>
+
+
+
+
+没有到success函数却到error函数的原因：
+没有严格的返回json数据，字符串不行，更多内容：
+https://my.oschina.net/adwangxiao/blog/78509
