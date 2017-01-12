@@ -175,7 +175,7 @@ return Response(data=json.dumps({'ok': True}), mimetype='application/json')
 
 
 没有到success函数却到error函数的原因：
-没有严格的返回json数据，字符串不行，更多内容：
+没有严格的返回json数据，即使字符串不行，更多内容：
 https://my.oschina.net/adwangxiao/blog/78509
 
 
@@ -188,13 +188,46 @@ https://my.oschina.net/adwangxiao/blog/78509
 
 
 
+length($.trim($("#ideas_lib_calc_data").val()))
+
+
+
+//input 这种凡是获取值，不填时为空string，前段代码typeof = string，
+obj.benchmark = $("#ideas_lib_calc_benchmark_of_addpanel").val();
+obj.machine = $("#ideas_lib_calc_data_of_addpanel").val();
 
 
 
 
+以下代码及后果
+前端以jquery.trim(val)传出（未填数据）
+obj.benchmark = $.trim($("#ideas_lib_calc_benchmark_of_addpanel").val());
+obj.machine = $.trim($("#ideas_lib_calc_data_of_addpanel").val());
+后端的数据接收
+input_benchmark = obj["benchmark"]
+ip = obj["machine"]
+new_subtask.ict_data = obj["machine"]
+print "ip is!!!!!"
+print obj["machine"]
+print type(obj["machine"])
+print "bool ip is None ?"
+print bool(ip is None)
 
 
+----------------
+ip is!!!!!
 
+<type 'unicode'>
+bool ip is None ?
+False
+----------------全改ip
+ip is?
+
+<type 'unicode'>
+bool ip is None ?
+False
+----------------
+mysql为空而不是null
 
 
 
