@@ -10,6 +10,8 @@ r'I:\USTC\opencv\2.4.13\opencv\sources\3rdparty\ffmpeg'
 两个dll改版本号，复制到python根目录下
 把3rd那个目录加入环境变量不管用，得复制
 
+在dell里，ffmpeg里文件复制改名，且复制到python_64下，但python_64不再环境变量里，但ffmepg在环境变量里，可用(需把目录换成斜杠'C:/Users/JPang3/Desktop/beijing/opencv/opencv_projects/python-opencv/wildlife.wmv')
+
 
 #  //save video
 http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html#display-video
