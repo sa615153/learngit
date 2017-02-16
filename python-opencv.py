@@ -1,5 +1,10 @@
 cv2.4.13， python 2.7.12
 
+mona lisa：
+渐变，，模糊处理障眼法？透视？  chapter10图像混合，addweighted
+chapter17， enrode， 做出核心支架信息？
+
+
 imshow和waitkey联合使用
 cv2.imshow('image',img)
 cv2.waitkey(2000)
@@ -23,6 +28,14 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')不可用
 fourcc = cv2.cv.FOURCC(*'XVID')可用
 
 
+
+blur 模糊，去噪音， filters 滤波器
+
+最新版python-opencv-python-tutroals措辞比较准确，
+
+高斯窗口threshold， 高斯模糊（滤波）+ ostu threshold
+
+第一个像素卷积平均值或别的值会在卷积第二个像素时用到吗？
 
 
 
