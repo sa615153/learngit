@@ -87,7 +87,9 @@ drawContours
 识别
     contours - more function - cv2.matchShapes   That would be a simple step towards OCR  光学字符识别（英语：Optical Character Recognition, OCR）
 
-
+histogram
+    一副高质量的图像的像素值分布应该很广泛
+	
 
 
 
