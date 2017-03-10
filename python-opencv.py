@@ -61,7 +61,7 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')不可用
 	
 blur 模糊，去噪音， filters 滤波器
 
-最新版python-opencv-python-tutroals措辞比较准确，
+最新版python-opencv-python-tutorials措辞比较准确，
 
 高斯窗口threshold， 高斯模糊（滤波）+ ostu threshold
 
