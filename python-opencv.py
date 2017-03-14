@@ -11,6 +11,9 @@ distance detection:
  轮廓在形状分析和物体的检测和识别中很有用
  find objects in an image using Template Matching：先识别，再算位置，推出角度
  霍夫变换在检测各种形状的的技术中非常流行，如果你要检测的形状可以用数学表达式写出，你就可以是使用霍夫变换检测它
+ 
+ feature detection and description
+	亚像素级精确度的角点
 
  
 
@@ -178,7 +181,7 @@ histogram
 	disc = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
 	cv2.filter2D(dst,-1,disc,dst)
 
-
+大概是振幅越高，频率越低，幅度谱亮点周围都是振幅高的--即低频分量，除去之后剩高频分量
 
 
 
